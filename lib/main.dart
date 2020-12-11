@@ -13,6 +13,9 @@ import './screens/login_screen.dart';
 
 import './providers/places.dart';
 import './providers/hotels.dart';
+import './providers/auth.dart';
+
+// import './widgets/splash.dart';
 
 Future main() async {
   await DotEnv().load('.env');
@@ -24,25 +27,37 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (ctx) => Auth()),
         ChangeNotifierProvider(create: (ctx) => Hotels()),
         ChangeNotifierProvider(create: (ctx) => Places()),
       ],
-      child: MaterialApp(
-        title: 'Mysuru Toursim',
-        theme: ThemeData(
-          primarySwatch: Colors.amber,
-          accentColor: Colors.brown,
+      child: Consumer<Auth>(
+        builder: (ctx, auth, _) => MaterialApp(
+          title: 'Mysuru Toursim',
+          theme: ThemeData(
+            primarySwatch: Colors.amber,
+            accentColor: Colors.brown,
+          ),
+          home: HomeScreen(),
+          // home: auth.isAuth
+          //     ? HomeScreen()
+          //     : FutureBuilder(
+          //         future: auth.tryAutoLogin(),
+          //         builder: (ctx, authResSnapshot) =>
+          //             authResSnapshot.connectionState == ConnectionState.waiting
+          //                 ? Splash()
+          //                 : SignupScreen(),
+          //       ),
+          routes: {
+            HotelsScreen.routeName: (ctx) => HotelsScreen(),
+            HotelScreen.routeName: (ctx) => HotelScreen(),
+            PlacesScreen.routeName: (ctx) => PlacesScreen(),
+            PlaceScreen.routeName: (ctx) => PlaceScreen(),
+            ServicesScreen.routeName: (ctx) => ServicesScreen(),
+            SignupScreen.routeName: (ctx) => SignupScreen(),
+            LoginScreen.routeName: (ctx) => LoginScreen(),
+          },
         ),
-        home: HomeScreen(),
-        routes: {
-          HotelsScreen.routeName: (ctx) => HotelsScreen(),
-          HotelScreen.routeName: (ctx) => HotelScreen(),
-          PlacesScreen.routeName: (ctx) => PlacesScreen(),
-          PlaceScreen.routeName: (ctx) => PlaceScreen(),
-          ServicesScreen.routeName: (ctx) => ServicesScreen(),
-          SignupScreen.routeName: (ctx) => SignupScreen(),
-          LoginScreen.routeName: (ctx) => LoginScreen(),
-        },
       ),
     );
   }

@@ -1,136 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:mysuru_toursim/screens/login_screen.dart';
 
 class SignupScreen extends StatelessWidget {
   static const routeName = '/signup';
-  static const padding_lr = 20.0;
-  static const padding_top = 12.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text(
-          'Sign Up',
-          style: TextStyle(fontSize: 32),
-        ),
-        centerTitle: true,
+        title: Text('Mysuru Tourism'),
         actions: [
           FlatButton(
-            onPressed: null,
-            child: Text(
-              "Login",
-              style: TextStyle(fontSize: 12, color: Colors.brown),
-            ),
-          )
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+            },
+            child: Text('Login', style: TextStyle(fontSize: 18)),
+          ),
         ],
       ),
       body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Align(
-                child: Icon(
-                  Icons.account_circle,
-                  size: 80,
+        padding: EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 20,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Align(
+              child: Icon(
+                Icons.account_circle,
+                size: 80,
+                color: Colors.black,
+              ),
+              alignment: Alignment.topCenter,
+            ),
+            SizedBox(height: 20),
+            Container(
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person),
+                  labelText: "First Name",
+                  border: OutlineInputBorder(),
                 ),
-                alignment: Alignment.topCenter,
+                keyboardType: TextInputType.text,
               ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: padding_top, left: padding_lr, right: padding_lr),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.person),
-                        labelText: "First Name",
-                        border: OutlineInputBorder(),
-                      ),
-                      keyboardType: TextInputType.text,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: padding_top, left: padding_lr, right: padding_lr),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.person),
-                        labelText: "Last Name",
-                        border: OutlineInputBorder(),
-                      ),
-                      keyboardType: TextInputType.text,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: padding_top, left: padding_lr, right: padding_lr),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.mail),
-                        labelText: "Email",
-                        border: OutlineInputBorder(),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: padding_top, left: padding_lr, right: padding_lr),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.phone),
-                        labelText: "Phone Number",
-                        border: OutlineInputBorder(),
-                      ),
-                      keyboardType: TextInputType.phone,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: padding_top, left: padding_lr, right: padding_lr),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.security),
-                        labelText: "Password",
-                        border: OutlineInputBorder(),
-                      ),
-                      keyboardType: TextInputType.visiblePassword,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: padding_top, left: padding_lr, right: padding_lr),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.security),
-                        labelText: "Confirm Password",
-                        border: OutlineInputBorder(),
-                      ),
-                      keyboardType: TextInputType.visiblePassword,
-                    ),
-                  ),
-                ],
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person),
+                  labelText: "Last Name",
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.text,
               ),
-              SizedBox(
-                height: 2 * padding_top,
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.mail),
+                  labelText: "Email",
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.emailAddress,
               ),
-              FloatingActionButton.extended(
-                onPressed: () {},
-                label: Text("Sign Up"),
-                icon: Icon(Icons.login),
-                heroTag: null,
-                elevation: 2,
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.security),
+                  labelText: "Password",
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.visiblePassword,
               ),
-              FlatButton(
-                child: Text("Continue as Visitor"),
-                onPressed: () {},
-              )
-            ],
-          ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.security),
+                  labelText: "Confirm Password",
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.visiblePassword,
+              ),
+            ),
+            SizedBox(height: 20),
+            FloatingActionButton.extended(
+              onPressed: () {},
+              label: Text('Sign Up', style: TextStyle(color: Colors.black)),
+              icon: Icon(Icons.login, color: Colors.black),
+              heroTag: null,
+              elevation: 2,
+              backgroundColor: Theme.of(context).primaryColor,
+            ),
+          ],
         ),
       ),
     );

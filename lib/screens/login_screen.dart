@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
 
+import './signup_screen.dart';
+
 class LoginScreen extends StatelessWidget {
   static const routeName = '/login';
-  static const padding_lr = 20.0;
-  static const padding_top = 12.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text(
-          'Login',
-          style: TextStyle(fontSize: 32),
-        ),
-        centerTitle: true,
+        title: Text('Mysuru Tourism'),
         actions: [
           FlatButton(
-            onPressed: null,
-            child: Text(
-              "Sign Up",
-              style: TextStyle(fontSize: 12, color: Colors.brown),
-            ),
+            onPressed: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(SignupScreen.routeName);
+            },
+            child: Text('Sign Up', style: TextStyle(fontSize: 18)),
           )
         ],
       ),
       body: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 20,
+        ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Align(
@@ -37,51 +34,37 @@ class LoginScreen extends StatelessWidget {
               ),
               alignment: Alignment.topCenter,
             ),
-            Flex(
-              direction: Axis.vertical,
-            ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: padding_top, left: padding_lr, right: padding_lr),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.phone),
-                      labelText: "Phone Number",
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: TextInputType.phone,
-                  ),
+            SizedBox(height: 20),
+            Container(
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.mail),
+                  labelText: "Email",
+                  border: OutlineInputBorder(),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: padding_top, left: padding_lr, right: padding_lr),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.security),
-                      labelText: "Password",
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: TextInputType.visiblePassword,
-                  ),
+                keyboardType: TextInputType.emailAddress,
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.security),
+                  labelText: "Password",
+                  border: OutlineInputBorder(),
                 ),
-              ],
+                keyboardType: TextInputType.visiblePassword,
+              ),
             ),
-            SizedBox(
-              height: 2 * padding_top,
-            ),
+            SizedBox(height: 20),
             FloatingActionButton.extended(
               onPressed: () {},
-              label: Text("Login"),
-              icon: Icon(Icons.login),
+              label: Text('Log In', style: TextStyle(color: Colors.black)),
+              icon: Icon(Icons.login, color: Colors.black),
               heroTag: null,
               elevation: 2,
+              backgroundColor: Theme.of(context).primaryColor,
             ),
-            FlatButton(
-              child: Text("Continue as Visitor"),
-              onPressed: () {},
-            )
           ],
         ),
       ),
