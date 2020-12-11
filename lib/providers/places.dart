@@ -10,6 +10,7 @@ class Places with ChangeNotifier {
     Place(
       id: DateTime.now().toIso8601String(),
       title: 'The Temple',
+      address: 'Pranshu Ka Ghar, 4220011',
       description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit tincidunt porta. Cras nec luctus diam. Phasellus iaculis diam vel dui rutrum, eget ullamcorper lectus commodo. Sed mollis aliquet lacus ut auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus',
       imageUrl:
@@ -20,6 +21,7 @@ class Places with ChangeNotifier {
     Place(
       id: DateTime.now().toIso8601String(),
       title: 'The Canyon',
+      address: 'Vishesh Ka Ghar,200019',
       description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit tincidunt porta. Cras nec luctus diam. Phasellus iaculis diam vel dui rutrum, eget ullamcorper lectus commodo. Sed mollis aliquet lacus ut auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus',
       imageUrl:

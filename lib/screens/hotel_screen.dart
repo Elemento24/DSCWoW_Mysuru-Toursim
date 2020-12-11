@@ -63,7 +63,7 @@ class HotelScreen extends StatelessWidget {
                           color: Colors.red,
                         ),
                         Text(
-                          hotel.hotelAddress,
+                          "${hotel.hotelAddress}",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey,
@@ -134,11 +134,9 @@ class HotelScreen extends StatelessWidget {
                 ),
               ),
               customDivider,
-              ListView(
-                children:[
-                  // ToDO: Refactor review widget from profile_volunteer and make use those widgets here.
-                ]
-              )
+              ListView(children: [
+                // ToDO: Refactor review widget from profile_volunteer and make use those widgets here.
+              ])
             ],
           ),
         ),
