@@ -5,9 +5,12 @@ import 'package:provider/provider.dart';
 import './screens/services_screen.dart';
 import './screens/home_screen.dart';
 import './screens/hotels_screen.dart';
+import './screens/hotel_screen.dart';
 import './screens/places_screen.dart';
 import './screens/signup_screen.dart';
 import './screens/login_screen.dart';
+
+import './providers/hotels.dart';
 
 Future main() async {
   await DotEnv().load('.env');
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (ctx) => null),
+        ChangeNotifierProvider(create: (ctx) => Hotels()),
       ],
       child: MaterialApp(
         title: 'Mysuru Toursim',
@@ -30,6 +33,7 @@ class MyApp extends StatelessWidget {
         home: HomeScreen(),
         routes: {
           HotelsScreen.routeName: (ctx) => HotelsScreen(),
+          HotelScreen.routeName: (ctx) => HotelScreen(),
           PlacesScreen.routeName: (ctx) => PlacesScreen(),
           ServicesScreen.routeName: (ctx) => ServicesScreen(),
           SignupScreen.routeName: (ctx) => SignupScreen(),

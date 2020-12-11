@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import './hotel_screen.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/hotel_card.dart';
+import '../providers/hotels.dart';
 
 class HotelsScreen extends StatelessWidget {
   static const routeName = '/hotels';
 
   @override
   Widget build(BuildContext context) {
+    final hotels = Provider.of<Hotels>(context).hotels;
     return Scaffold(
       appBar: AppBar(
         title: Text('Hotels Screen'),
@@ -15,18 +19,17 @@ class HotelsScreen extends StatelessWidget {
       drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
-            HotelCard(
-              'Hotel Grand',
-              'https://i.pinimg.com/originals/56/e9/9f/56e99f9882a649e88f8ea54d2a8bd1ab.jpg',
-              '5.0',
-            ),
-            HotelCard(
-              'Hotel Empire',
-              'https://i.pinimg.com/originals/56/e9/9f/56e99f9882a649e88f8ea54d2a8bd1ab.jpg',
-              '4.0',
-            ),
-          ],
+          children: hotels
+              .map(
+                (el) => InkWell(
+                  onTap: () {
+                    Navigator.of(context)
+                        .pushNamed(HotelScreen.routeName, arguments: el.id);
+                  },
+                  child: HotelCard(el.hotelName, el.imgUrl, el.rating),
+                ),
+              )
+              .toList(),
         ),
       ),
     );

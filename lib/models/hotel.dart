@@ -4,6 +4,7 @@ import 'package:mysuru_toursim/models/review.dart';
 class Hotel {
   final String id;
   final String imgUrl;
+  final String rating;
   final String hotelName;
   final String hotelAddress;
   final String hotelContactNumber;
@@ -12,14 +13,16 @@ class Hotel {
   final String hotelEstimatedRoomPrizes;
   final List<Review> hotelReviews;
 
-  Hotel(
-      {@required this.id,
-      @required this.imgUrl,
-      @required this.hotelName,
-      @required this.hotelAddress,
-      @required this.hotelContactNumber,
-      this.hotelGmailLink,
-      this.hotelWebsiteLink,
-      this.hotelEstimatedRoomPrizes,
-      @required this.hotelReviews});
+  Hotel({
+    @required this.id,
+    @required this.imgUrl,
+    @required this.rating,
+    @required this.hotelName,
+    @required this.hotelAddress,
+    @required this.hotelContactNumber,
+    this.hotelGmailLink,
+    this.hotelWebsiteLink,
+    this.hotelEstimatedRoomPrizes,
+    this.hotelReviews,
+  });
 }
