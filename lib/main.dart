@@ -7,9 +7,11 @@ import './screens/home_screen.dart';
 import './screens/hotels_screen.dart';
 import './screens/hotel_screen.dart';
 import './screens/places_screen.dart';
+import './screens/place_screen.dart';
 import './screens/signup_screen.dart';
 import './screens/login_screen.dart';
 
+import './providers/places.dart';
 import './providers/hotels.dart';
 
 Future main() async {
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => Hotels()),
+        ChangeNotifierProvider(create: (ctx) => Places()),
       ],
       child: MaterialApp(
         title: 'Mysuru Toursim',
@@ -35,6 +38,7 @@ class MyApp extends StatelessWidget {
           HotelsScreen.routeName: (ctx) => HotelsScreen(),
           HotelScreen.routeName: (ctx) => HotelScreen(),
           PlacesScreen.routeName: (ctx) => PlacesScreen(),
+          PlaceScreen.routeName: (ctx) => PlaceScreen(),
           ServicesScreen.routeName: (ctx) => ServicesScreen(),
           SignupScreen.routeName: (ctx) => SignupScreen(),
           LoginScreen.routeName: (ctx) => LoginScreen(),

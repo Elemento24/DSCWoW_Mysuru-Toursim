@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/app_drawer.dart';
-import 'hotels_screen.dart';
-import 'places_screen.dart';
+import './hotels_screen.dart';
+import './places_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   Widget _buildButton(
