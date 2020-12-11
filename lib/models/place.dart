@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mysuru_toursim/models/review.dart';
 
 class Place {
   final String id;
   final String title;
   final String description;
   final String imageUrl;
+  final List<Review> placeReview;
 
-  Place({
-    @required this.id,
-    @required this.title,
-    @required this.description,
-    @required this.imageUrl,
-  });
+  Place(
+      {@required this.id,
+      @required this.title,
+      @required this.description,
+      @required this.imageUrl,
+      @required this.placeReview});
 }
