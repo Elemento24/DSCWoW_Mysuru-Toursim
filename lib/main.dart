@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
 import './screens/home_screen.dart';
+import './screens/hotels_screen.dart';
 
 Future main() async {
   await DotEnv().load('.env');
@@ -23,7 +24,9 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
         ),
         home: HomeScreen(),
-        routes: {},
+        routes: {
+          HotelsScreen.routeName: (ctx) => HotelsScreen(),
+        },
       ),
     );
   }
