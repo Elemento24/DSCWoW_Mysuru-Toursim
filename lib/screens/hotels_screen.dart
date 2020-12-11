@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../widgets/app_drawer.dart';
 import '../models/hotel.dart';
 import '../widgets/hotel_card.dart';
 
@@ -9,14 +11,16 @@ class HotelsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Hotels Screen'),
-        ),
-        body: Column(
-          children: <Widget>[
-            HotelCard(selectCorner: 1),
-            HotelCard(selectCorner: 0)
-          ],
-        ));
+      appBar: AppBar(
+        title: Text('Hotels Screen'),
+      ),
+      drawer: AppDrawer(),
+      body: Column(
+        children: <Widget>[
+          HotelCard(selectCorner: 1),
+          HotelCard(selectCorner: 0)
+        ],
+      ),
+    );
   }
 }
