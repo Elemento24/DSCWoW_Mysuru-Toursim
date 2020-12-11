@@ -1,87 +1,76 @@
 import 'package:flutter/material.dart';
 
-import '../models/hotel.dart';
-
 class HotelCard extends StatelessWidget {
-  final int selectCorner;
-  final Hotel hotelItem;
+  final String title;
+  final String imgUrl;
+  final String rating;
 
-  HotelCard({@required this.selectCorner, this.hotelItem});
-
-  ShapeBorder selectBorderCorner() {
-    if (selectCorner == 0) {
-      print(true);
-      return RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(topRight: Radius.circular(10.0)));
-    } else
-      return RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(10)));
-  }
+  HotelCard(this.title, this.imgUrl, this.rating);
 
   @override
   Widget build(BuildContext context) {
-    print(selectCorner);
-    double cardHeigh = MediaQuery.of(context).size.height * 0.3;
-    double cardWidth = cardHeigh * 2;
     return Container(
-      padding: EdgeInsets.all(10),
-      height: cardHeigh,
-      width: cardWidth,
+      height: 248,
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       child: Card(
-        shape: selectBorderCorner(),
-        color: Theme.of(context).primaryColor,
-        child: Stack(
-          children: <Widget>[
+        // elevation: 6,
+        child: Column(
+          children: [
             Container(
-              height: double.infinity,
+              height: 180,
               width: double.infinity,
-              child: Container(
-                child: Image.network(
-                  'https://i.pinimg.com/originals/56/e9/9f/56e99f9882a649e88f8ea54d2a8bd1ab.jpg',
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Theme.of(context).primaryColor,
-                    Colors.transparent,
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              height: cardHeigh * 0.2,
-              color: Colors.white,
-              margin: EdgeInsets.only(top: cardHeigh * 0.69),
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      "Hotel Dummy 1",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              child: Stack(
+                children: [
+                  Image(
+                    image: NetworkImage(imgUrl),
+                    fit: BoxFit.cover,
+                    height: 180,
+                    width: double.infinity,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Theme.of(context).primaryColor,
+                          Colors.transparent,
+                        ],
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: cardHeigh * 0.2,
-                    width: cardWidth * 0.3,
+                ],
+              ),
+            ),
+            Container(
+              height: 60,
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              color: Colors.amber[100],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    // padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      title,
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
-                  Text(
-                    "5.0",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Icon(
-                      Icons.star,
-                      color: Theme.of(context).primaryColor,
+                  Container(
+                    // padding: EdgeInsets.only(left: 10),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        Text(
+                          rating,
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
                     ),
                   )
                 ],
@@ -93,4 +82,3 @@ class HotelCard extends StatelessWidget {
     );
   }
 }
-//'https://i.pinimg.com/originals/56/e9/9f/56e99f9882a649e88f8ea54d2a8bd1ab.jpg'
