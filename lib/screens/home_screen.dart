@@ -1,8 +1,23 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  Widget _buildButton(BuildContext context, String title, IconData icon) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 0, horizontal: 100),
+      child: RaisedButton(
+        color: Theme.of(context).primaryColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Icon(icon),
+            Text(title),
+          ],
+        ),
+        onPressed: () {},
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,9 +143,11 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(20),
-            ),
+            SizedBox(height: 10),
+            _buildButton(context, 'Discover Mysore', Icons.camera),
+            SizedBox(height: 10),
+            _buildButton(context, 'Perfect Stay', Icons.hotel),
+            SizedBox(height: 20),
           ],
         ),
       ),
