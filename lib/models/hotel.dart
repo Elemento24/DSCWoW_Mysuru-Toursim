@@ -3,6 +3,7 @@ import 'package:mysuru_toursim/models/review.dart';
 
 class Hotel {
   final String id;
+  final String imgUrl;
   final String hotelName;
   final String hotelAddress;
   final String hotelContactNumber;
@@ -13,6 +14,7 @@ class Hotel {
 
   Hotel(
       {@required this.id,
+      @required this.imgUrl,
       @required this.hotelName,
       @required this.hotelAddress,
       @required this.hotelContactNumber,

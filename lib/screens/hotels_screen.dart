@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import '../models/hotel.dart';
+import '../widgets/hotel_card.dart';
 
 class HotelsScreen extends StatelessWidget {
   static const routeName = '/hotels';
+  List<Hotel> hotelsList = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Hotels Screen'),
-      ),
-      body: Center(
-        child: Text('Hotels Screen'),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Hotels Screen'),
+        ),
+        body: Column(
+          children: <Widget>[
+            HotelCard(selectCorner: 1),
+            HotelCard(selectCorner: 0)
+          ],
+        ));
   }
 }
