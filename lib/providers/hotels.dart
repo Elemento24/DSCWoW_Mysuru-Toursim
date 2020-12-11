@@ -15,6 +15,9 @@ class Hotels with ChangeNotifier {
       hotelName: 'The Grand Hotel',
       hotelAddress: 'B-27, First Street, Mysuru',
       hotelContactNumber: '+91 61278 12712',
+      hotelEstimatedRoomPrices: '4000',
+      hotelGmailLink: 'thegrandhotel@email.com',
+      hotelWebsiteLink: 'http://thegrandhotel.com'
     ),
     Hotel(
       id: DateTime.now().toIso8601String(),
@@ -24,6 +27,9 @@ class Hotels with ChangeNotifier {
       hotelName: 'The Empire Hotel',
       hotelAddress: 'B-27, First Street, Mysuru',
       hotelContactNumber: '+91 61278 12712',
+      hotelEstimatedRoomPrices: '5000',
+      hotelGmailLink: 'theempirehotel@email.com',
+      hotelWebsiteLink: 'http://theempire.hotel'
     ),
   ];
 

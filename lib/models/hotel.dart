@@ -10,7 +10,7 @@ class Hotel {
   final String hotelContactNumber;
   final String hotelGmailLink;
   final String hotelWebsiteLink;
-  final String hotelEstimatedRoomPrizes;
+  final String hotelEstimatedRoomPrices;
   final List<Review> hotelReviews;
 
   Hotel({
@@ -22,7 +22,7 @@ class Hotel {
     @required this.hotelContactNumber,
     this.hotelGmailLink,
     this.hotelWebsiteLink,
-    this.hotelEstimatedRoomPrizes,
+    this.hotelEstimatedRoomPrices,
     this.hotelReviews,
   });
 }
