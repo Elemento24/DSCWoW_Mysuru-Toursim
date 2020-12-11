@@ -6,6 +6,8 @@ import './screens/services_screen.dart';
 import './screens/home_screen.dart';
 import './screens/hotels_screen.dart';
 import './screens/places_screen.dart';
+import './screens/signup_screen.dart';
+import './screens/login_screen.dart';
 
 Future main() async {
   await DotEnv().load('.env');
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
           HotelsScreen.routeName: (ctx) => HotelsScreen(),
           PlacesScreen.routeName: (ctx) => PlacesScreen(),
           ServicesScreen.routeName: (ctx) => ServicesScreen(),
+          SignupScreen.routeName: (ctx) => SignupScreen(),
+          LoginScreen.routeName: (ctx) => LoginScreen(),
         },
       ),
     );
