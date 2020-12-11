@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/app_drawer.dart';
 import 'hotels_screen.dart';
 import 'places_screen.dart';
 
@@ -30,6 +31,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Mysuru: One of it\'s Kind'),
       ),
+      drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
