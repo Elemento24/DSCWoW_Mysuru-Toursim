@@ -32,5 +32,3 @@ class HotelsScreen extends StatelessWidget {
     );
   }
 }
-
-// 'https://i.pinimg.com/originals/56/e9/9f/56e99f9882a649e88f8ea54d2a8bd1ab.jpg'
