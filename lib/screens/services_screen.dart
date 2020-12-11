@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/app_drawer.dart';
+
 class ServicesScreen extends StatelessWidget {
   static const routeName = '/services';
 
@@ -9,6 +11,7 @@ class ServicesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Services Screen'),
       ),
+      drawer: AppDrawer(),
       body: Center(
         child: Text('Services Screen'),
       ),

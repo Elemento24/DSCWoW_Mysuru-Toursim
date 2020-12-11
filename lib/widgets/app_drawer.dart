@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/places_screen.dart';
 import '../screens/hotels_screen.dart';
+import '../screens/services_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   Widget buildListTile(
@@ -51,6 +52,9 @@ class AppDrawer extends StatelessWidget {
           SizedBox(height: 20),
           buildListTile(
               context, 'Places to Stay', Icons.hotel, HotelsScreen.routeName),
+          SizedBox(height: 20),
+          buildListTile(context, 'Services', Icons.miscellaneous_services,
+              ServicesScreen.routeName),
         ],
       ),
     );
