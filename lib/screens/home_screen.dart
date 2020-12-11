@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'hotels_screen.dart';
+import 'places_screen.dart';
+
 class HomeScreen extends StatelessWidget {
-  Widget _buildButton(BuildContext context, String title, IconData icon) {
+  Widget _buildButton(
+      BuildContext context, String title, IconData icon, String route) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 0, horizontal: 100),
       child: RaisedButton(
@@ -13,7 +17,9 @@ class HomeScreen extends StatelessWidget {
             Text(title),
           ],
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushReplacementNamed(route);
+        },
       ),
     );
   }
@@ -144,9 +150,11 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            _buildButton(context, 'Discover Mysore', Icons.camera),
+            _buildButton(context, 'Discover Mysore', Icons.camera,
+                PlacesScreen.routeName),
             SizedBox(height: 10),
-            _buildButton(context, 'Perfect Stay', Icons.hotel),
+            _buildButton(
+                context, 'Perfect Stay', Icons.hotel, HotelsScreen.routeName),
             SizedBox(height: 20),
           ],
         ),
