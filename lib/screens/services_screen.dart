@@ -5,8 +5,6 @@ import 'package:mysuru_toursim/widgets/volunteer_card.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/app_drawer.dart';
-import '../widgets/cab_services.dart';
-import '../widgets/guide_services.dart';
 
 class ServicesScreen extends StatefulWidget {
   static const routeName = '/services';
@@ -23,14 +21,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
   void initState() {
     super.initState();
     _pages = [
-      {
-        'page': CabServices(),
-        'title': 'Cab Services',
-      },
-      {
-        'page': GuideServices(),
-        'title': 'Guide Services',
-      },
+      {'title': 'Cab Services'},
+      {'title': 'Guide Services'},
     ];
   }
 
@@ -54,8 +46,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
           ? GridView(
               children: cabVolunteers
                   .map(
-                    (volunteer) => VolunteerCard(volunteer.title,
-                        volunteer.phone, volunteer.description),
+                    (volunteer) => VolunteerCard(
+                      volunteer.title,
+                      volunteer.phone,
+                      volunteer.description,
+                      volunteer.id,
+                    ),
                   )
                   .toList(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -68,8 +64,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
           : GridView(
               children: touristVolunteer
                   .map(
-                    (volunteer) => VolunteerCard(volunteer.title,
-                        volunteer.phone, volunteer.description),
+                    (volunteer) => VolunteerCard(
+                      volunteer.title,
+                      volunteer.phone,
+                      volunteer.description,
+                      volunteer.id,
+                    ),
                   )
                   .toList(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
