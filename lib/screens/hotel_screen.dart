@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mysuru_toursim/widgets/divider_custom.dart';
 import 'package:mysuru_toursim/widgets/review_card.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,14 +21,6 @@ class HotelScreen extends StatelessWidget {
       ),
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(30.0),
-    );
-    final Widget customDivider = Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: Divider(
-        height: 4,
-        thickness: 2,
-        color: Colors.amber.shade300,
-      ),
     );
     return Scaffold(
       body: SafeArea(
@@ -51,7 +44,7 @@ class HotelScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              customDivider,
+              DividerCustom(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -134,16 +127,27 @@ class HotelScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              customDivider,
-              ReviewCard(
-                message:
-                    'This hotel is really an awesome place. Blah blah blah...',
-                rating: 5.0,
-                author: 'Vishesh Mittal',
-              )
+              DividerCustom(),
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  // physics: NeverScrollableScrollPhysics(),
+                  itemCount: hotel.hotelReviews.length,
+                  itemBuilder: (context, i) {
+                    return ReviewCard(
+                        message: hotel.hotelReviews[i].message,
+                        author: hotel.hotelReviews[i].author,
+                        rating: hotel.hotelReviews[i].rating);
+                  },
+                ),
+              ),
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.rate_review),
+        onPressed: () {},
       ),
     );
   }
