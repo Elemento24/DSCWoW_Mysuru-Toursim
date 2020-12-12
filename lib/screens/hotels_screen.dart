@@ -6,8 +6,32 @@ import '../widgets/app_drawer.dart';
 import '../widgets/hotel_card.dart';
 import '../providers/hotels.dart';
 
-class HotelsScreen extends StatelessWidget {
+class HotelsScreen extends StatefulWidget {
   static const routeName = '/hotels';
+
+  @override
+  _HotelsScreenState createState() => _HotelsScreenState();
+}
+
+class _HotelsScreenState extends State<HotelsScreen> {
+  var _isInit = true;
+  var _isLoading = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+      Provider.of<Hotels>(context).fetchAndSetHotels().then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,21 +41,23 @@ class HotelsScreen extends StatelessWidget {
         title: Text('Hotels Screen'),
       ),
       drawer: AppDrawer(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: hotels
-              .map(
-                (el) => InkWell(
-                  onTap: () {
-                    Navigator.of(context)
-                        .pushNamed(HotelScreen.routeName, arguments: el.id);
-                  },
-                  child: HotelCard(el.hotelName, el.imgUrl, el.rating),
-                ),
-              )
-              .toList(),
-        ),
-      ),
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              child: Column(
+                children: hotels
+                    .map(
+                      (el) => InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(HotelScreen.routeName,
+                              arguments: el.id);
+                        },
+                        child: HotelCard(el.hotelName, el.imgUrl, el.rating),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
     );
   }
 }
