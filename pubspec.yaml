@@ -68,7 +68,7 @@ flutter:
     - family: Raleway
       fonts:
         - asset: assets/fonts/Raleway-Regular.ttf
-        - asset: fonts/Raleway-Italic.ttf
+        - asset: assets/fonts/Raleway-Italic.ttf
           style: italic
         - asset: assets/fonts/Raleway-Black.ttf
           weight: 900
