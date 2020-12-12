@@ -43,7 +43,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mysuru: One of it\'s Kind'),
+        title: Text(
+          'Mysuru: One of it\'s Kind',
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 24,
+          ),
+        ),
       ),
       drawer: AppDrawer(),
       body: SingleChildScrollView(
@@ -83,7 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           'Mysore',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 32,
+                            fontSize: 70,
+                            fontWeight: FontWeight.w300,
                           ),
                         ),
                         Text(
@@ -92,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.white,
                             fontSize: 20,
                             fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                       ],
@@ -123,7 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'About Mysore',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
                   SizedBox(
@@ -132,33 +140,33 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'The cultural ambiance and achievements of Mysuru earned it the sobriquet Cultural Capital of Karnataka. Mysuru is noted for its heritage structures and palaces, including the Mysuru Palace, and for the festivities that take place during the Dasara festival when the city receives many tourists from around the world.',
                     style: TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.italic,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Image(
                         image: AssetImage('assets/images/2.jpeg'),
                         fit: BoxFit.cover,
-                        height: 100,
-                        width: 100,
+                        height: 80,
+                        width: 80,
                       ),
                       Image(
                         image: AssetImage('assets/images/3.jpeg'),
                         fit: BoxFit.cover,
-                        height: 100,
-                        width: 100,
+                        height: 80,
+                        width: 80,
                       ),
                       Image(
                         image: AssetImage('assets/images/4.jpeg'),
                         fit: BoxFit.cover,
-                        height: 100,
-                        width: 100,
+                        height: 80,
+                        width: 80,
                       ),
                     ],
                   ),
