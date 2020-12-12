@@ -185,9 +185,7 @@ class _CreateProfileCardState extends State<CreateProfileCard> {
                       : FloatingActionButton.extended(
                           onPressed: _submit,
                           label: Text(
-                            _hasCreatedProfile
-                                ? 'Create Profile'
-                                : 'Edit Profile',
+                            'Create Profile',
                             style: TextStyle(color: Colors.black),
                           ),
                           icon: Icon(Icons.login, color: Colors.black),
