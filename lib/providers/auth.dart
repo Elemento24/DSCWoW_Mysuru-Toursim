@@ -16,6 +16,7 @@ class Auth with ChangeNotifier {
   String _firstName;
   String _lastName;
   bool _isTourist;
+  bool _hasCreatedProfile;
 
   bool get isAuth {
     return token != null;
@@ -90,11 +91,13 @@ class Auth with ChangeNotifier {
             'lastName': lastName,
             'isTourist': isTourist,
             'userId': resData['localId'],
+            'hasCreatedProfile': false,
           }),
         );
         _firstName = firstName;
         _lastName = lastName;
         _isTourist = isTourist;
+        _hasCreatedProfile = false;
       }
       // Fetching the Data from the User Model
       else {
@@ -106,6 +109,7 @@ class Auth with ChangeNotifier {
         _firstName = userDetails['firstName'];
         _lastName = userDetails['lastName'];
         _isTourist = userDetails['isTourist'];
+        _hasCreatedProfile = userDetails['hasCreatedProfile'];
       }
 
       _autoLogout();
@@ -119,6 +123,7 @@ class Auth with ChangeNotifier {
         'firstName': _firstName,
         'lastName': _lastName,
         'isTourist': _isTourist,
+        'hasCreatedProfile': _hasCreatedProfile,
       });
       prefs.setString('userData', userData);
     } catch (error) {
