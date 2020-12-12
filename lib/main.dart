@@ -64,6 +64,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.amber,
             accentColor: Colors.brown,
+            fontFamily: 'Raleway',
           ),
           // home: HomeScreen(),
           home: auth.isAuth
