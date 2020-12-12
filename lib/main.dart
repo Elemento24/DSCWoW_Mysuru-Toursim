@@ -13,9 +13,10 @@ import './screens/signup_screen.dart';
 import './screens/login_screen.dart';
 import './screens/profile_screen.dart';
 
+import './providers/auth.dart';
 import './providers/places.dart';
 import './providers/hotels.dart';
-import './providers/auth.dart';
+import './providers/volunteers.dart';
 
 import './widgets/splash.dart';
 
@@ -42,6 +43,14 @@ class MyApp extends StatelessWidget {
           update: (ctx, auth, prevPlaces) => Places(
             auth.userId,
             prevPlaces == null ? [] : prevPlaces.places,
+          ),
+        ),
+        ChangeNotifierProxyProvider<Auth, Volunteers>(
+          create: null,
+          update: (ctx, auth, prevVolunteers) => Volunteers(
+            auth.userId,
+            auth.name,
+            prevVolunteers == null ? [] : prevVolunteers.volunteers,
           ),
         ),
       ],
