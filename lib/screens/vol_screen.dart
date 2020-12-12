@@ -3,6 +3,7 @@ import 'package:mysuru_toursim/widgets/divider_custom.dart';
 import 'package:mysuru_toursim/widgets/new_review.dart';
 import 'package:mysuru_toursim/widgets/review_card.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 import '../providers/volunteers.dart';
@@ -87,23 +88,28 @@ class VolunteerScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: Card(
                     color: Colors.amber,
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        children: [
-                          Icon(Icons.phone),
-                          Padding(
-                            padding: EdgeInsets.only(left: 8),
-                            child: Text(
-                              vol.phone,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.normal,
+                    child: InkWell(
+                      onTap: () async {
+                        await launch('tel:${vol.phone}');
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            Icon(Icons.phone),
+                            Padding(
+                              padding: EdgeInsets.only(left: 8),
+                              child: Text(
+                                vol.phone,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.normal,
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
