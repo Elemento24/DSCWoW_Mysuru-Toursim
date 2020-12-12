@@ -49,7 +49,7 @@ class PlaceScreen extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: place.placeReview.length + 1,
+                itemCount: place.reviews.length + 1,
                 itemBuilder: (context, i) {
                   if (i == 0) {
                     return Column(
@@ -138,9 +138,9 @@ class PlaceScreen extends StatelessWidget {
                     );
                   }
                   return ReviewCard(
-                    message: place.placeReview[i - 1].message,
-                    author: place.placeReview[i - 1].author,
-                    rating: place.placeReview[i - 1].rating,
+                    message: place.reviews[i - 1].message,
+                    author: place.reviews[i - 1].author,
+                    rating: place.reviews[i - 1].rating,
                   );
                 },
               ),
