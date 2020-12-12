@@ -15,7 +15,7 @@ import './providers/places.dart';
 import './providers/hotels.dart';
 import './providers/auth.dart';
 
-// import './widgets/splash.dart';
+import './widgets/splash.dart';
 
 Future main() async {
   await DotEnv().load('.env');
@@ -38,16 +38,16 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.amber,
             accentColor: Colors.brown,
           ),
-          home: HomeScreen(),
-          // home: auth.isAuth
-          //     ? HomeScreen()
-          //     : FutureBuilder(
-          //         future: auth.tryAutoLogin(),
-          //         builder: (ctx, authResSnapshot) =>
-          //             authResSnapshot.connectionState == ConnectionState.waiting
-          //                 ? Splash()
-          //                 : SignupScreen(),
-          //       ),
+          // home: HomeScreen(),
+          home: auth.isAuth
+              ? HomeScreen()
+              : FutureBuilder(
+                  future: auth.tryAutoLogin(),
+                  builder: (ctx, authResSnapshot) =>
+                      authResSnapshot.connectionState == ConnectionState.waiting
+                          ? Splash()
+                          : SignupScreen(),
+                ),
           routes: {
             HotelsScreen.routeName: (ctx) => HotelsScreen(),
             HotelScreen.routeName: (ctx) => HotelScreen(),

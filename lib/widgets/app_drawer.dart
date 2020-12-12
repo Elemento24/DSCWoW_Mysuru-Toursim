@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../screens/places_screen.dart';
 import '../screens/hotels_screen.dart';
 import '../screens/services_screen.dart';
+import '../providers/auth.dart';
 
 class AppDrawer extends StatelessWidget {
   Widget buildListTile(
@@ -55,6 +57,27 @@ class AppDrawer extends StatelessWidget {
           SizedBox(height: 20),
           buildListTile(context, 'Services', Icons.miscellaneous_services,
               ServicesScreen.routeName),
+          SizedBox(height: 20),
+          ListTile(
+            tileColor: Colors.amber[100],
+            leading: Icon(
+              Icons.exit_to_app,
+              size: 30,
+              color: Colors.black,
+            ),
+            title: Text(
+              'Logout',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushReplacementNamed('/');
+              Provider.of<Auth>(context, listen: false).logout();
+            },
+          ),
         ],
       ),
     );
