@@ -6,6 +6,7 @@ class Volunteer {
   final String userId;
   final String title;
   final String description;
+  final String phone;
   final bool isCab;
   final List<Review> reviews;
 
@@ -14,6 +15,7 @@ class Volunteer {
     @required this.userId,
     @required this.title,
     @required this.description,
+    @required this.phone,
     @required this.isCab,
     this.reviews,
   });
