@@ -112,6 +112,7 @@ class Auth with ChangeNotifier {
       });
       prefs.setString('userData', userData);
     } catch (error) {
+      print(error);
       throw error;
     }
   }
@@ -153,6 +154,8 @@ class Auth with ChangeNotifier {
     _lastName = extractedUserData['lastName'];
     _isTourist = extractedUserData['isTourist'];
     _expiryDate = expiryDate;
+
+    print(_token);
     notifyListeners();
     _autoLogout();
     return true;
