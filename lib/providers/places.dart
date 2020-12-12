@@ -89,4 +89,11 @@ class Places with ChangeNotifier {
   Place findById(String id) {
     return _places.firstWhere((el) => el.id == id);
   }
+
+  void addReview({String id, String desc, double rating, String author}) {
+    print(id);
+    print(desc);
+    print(author);
+    print(rating);
+  }
 }
