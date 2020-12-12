@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
+import './screens/vol_screen.dart';
 import './screens/map_screen.dart';
 import './screens/services_screen.dart';
 import './screens/home_screen.dart';
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
             MapScreen.routeName: (ctx) => MapScreen(),
             CreateProfileScreen.routeName: (ctx) => CreateProfileScreen(),
             EditProfileScreen.routeName: (ctx) => EditProfileScreen(),
+            VolunteerScreen.routeName: (ctx) => VolunteerScreen(),
           },
         ),
       ),
