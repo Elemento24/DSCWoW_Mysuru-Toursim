@@ -33,8 +33,7 @@ class HotelScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _hotelId = ModalRoute.of(context).settings.arguments as String;
-    final hotel =
-        Provider.of<Hotels>(context, listen: false).findById(_hotelId);
+    final hotel = Provider.of<Hotels>(context).findById(_hotelId);
     _hotelProvider = Provider.of<Hotels>(context, listen: false);
     final BoxDecoration roundBtnBoxDecoration = BoxDecoration(
       border: Border.all(
@@ -173,9 +172,10 @@ class HotelScreen extends StatelessWidget {
                   itemCount: hotel.reviews.length,
                   itemBuilder: (context, i) {
                     return ReviewCard(
-                        message: hotel.reviews[i].message,
-                        author: hotel.reviews[i].author,
-                        rating: hotel.reviews[i].rating);
+                      message: hotel.reviews[i].message,
+                      author: hotel.reviews[i].author,
+                      rating: hotel.reviews[i].rating,
+                    );
                   },
                 ),
               ),

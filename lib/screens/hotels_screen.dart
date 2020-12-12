@@ -45,17 +45,19 @@ class _HotelsScreenState extends State<HotelsScreen> {
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Column(
-                children: hotels
-                    .map(
-                      (el) => InkWell(
-                        onTap: () {
-                          Navigator.of(context).pushNamed(HotelScreen.routeName,
-                              arguments: el.id);
-                        },
-                        child: HotelCard(el.hotelName, el.imgUrl, el.rating),
-                      ),
-                    )
-                    .toList(),
+                children: hotels.map(
+                  (el) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                          HotelScreen.routeName,
+                          arguments: el.id,
+                        );
+                      },
+                      child: HotelCard(el.hotelName, el.imgUrl, el.rating),
+                    );
+                  },
+                ).toList(),
               ),
             ),
     );

@@ -20,9 +20,9 @@ class Hotel {
     @required this.hotelName,
     @required this.hotelAddress,
     @required this.hotelContactNumber,
+    @required this.hotelEstimatedRoomPrices,
     this.hotelGmailLink,
     this.hotelWebsiteLink,
-    this.hotelEstimatedRoomPrices,
     this.reviews,
   });
 }
