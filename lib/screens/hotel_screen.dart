@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mysuru_toursim/widgets/review_card.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../providers/hotels.dart';
@@ -134,9 +135,12 @@ class HotelScreen extends StatelessWidget {
                 ),
               ),
               customDivider,
-              ListView(children: [
-                // ToDO: Refactor review widget from profile_volunteer and make use those widgets here.
-              ])
+              ReviewCard(
+                message:
+                    'This hotel is really an awesome place. Blah blah blah...',
+                rating: 5.0,
+                author: 'Vishesh Mittal',
+              )
             ],
           ),
         ),

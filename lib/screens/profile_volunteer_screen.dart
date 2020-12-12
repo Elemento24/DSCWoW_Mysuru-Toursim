@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
+import 'package:mysuru_toursim/widgets/review_card.dart';
+
 class ProfileVolunteerScreen extends StatefulWidget {
   @override
   _ProfileVolunteerScreenState createState() => _ProfileVolunteerScreenState();
 }
 
 class _ProfileVolunteerScreenState extends State<ProfileVolunteerScreen> {
+  // below are some dummy variables for review card
+  final String message =
+      'Quando ambulabat agendis admonere te qualis actio. Si ad corpus, quae plerumque Imaginare tecum in balineo quidam aquam';
+  final String author = 'Avneesh Kumar';
+  final double rating = 4.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,72 +44,9 @@ class _ProfileVolunteerScreenState extends State<ProfileVolunteerScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      tileColor: Colors.white70,
-                      title: Text(
-                        "Quando ambulabat agendis admonere te qualis actio. Si ad corpus, quae plerumque Imaginare tecum in balineo quidam aquam",
-                      ),
-                      subtitle: Text("~ Avneesh Kumar",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                          textAlign: TextAlign.right),
-                      trailing: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          child: Text("4"),
-                          color: Colors.amber,
-                          height: 40,
-                          width: 40,
-                          alignment: Alignment.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      tileColor: Colors.white70,
-                      title: Text(
-                        "Quando ambulabat agendis admonere te qualis actio. Si ad corpus, quae plerumque Imaginare tecum in balineo quidam aquam",
-                      ),
-                      subtitle: Text("~ Avneesh Kumar",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                          textAlign: TextAlign.right),
-                      trailing: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          child: Text("4"),
-                          color: Colors.amber,
-                          height: 40,
-                          width: 40,
-                          alignment: Alignment.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      tileColor: Colors.white70,
-                      title: Text(
-                        "Quando ambulabat agendis admonere te qualis actio. Si ad corpus, quae plerumque Imaginare tecum in balineo quidam aquam",
-                      ),
-                      subtitle: Text("~ Avneesh Kumar",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                          textAlign: TextAlign.right),
-                      trailing: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          child: Text("4"),
-                          color: Colors.amber,
-                          height: 40,
-                          width: 40,
-                          alignment: Alignment.center,
-                        ),
-                      ),
-                    ),
-                  ),
+                  ReviewCard(message: message, author: author, rating: rating),
+                  ReviewCard(message: message, author: author, rating: rating),
+                  ReviewCard(message: message, author: author, rating: rating)
                 ],
               ),
             ],
