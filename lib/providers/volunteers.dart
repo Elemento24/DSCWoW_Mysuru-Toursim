@@ -30,6 +30,23 @@ class Volunteers with ChangeNotifier {
     return [..._volunteers];
   }
 
+  List<Volunteer> get cabVolunteers {
+    return _volunteers.where((el) => el.isCab);
+  }
+
+  List<Volunteer> get tourVolunteers {
+    return _volunteers.where((el) => !el.isCab);
+  }
+
+  Map<String, Object> get volDetails {
+    return {
+      'title': title,
+      'description': description,
+      'phone': phone,
+      'isCab': isCab,
+    };
+  }
+
   Volunteer findById(String id) {
     return _volunteers.firstWhere((el) => el.id == id);
   }
@@ -134,7 +151,7 @@ class Volunteers with ChangeNotifier {
     }
   }
 
-  Future<void> getAndSetDetails() async {
+  Future<void> setDetails() async {
     final curVol = getCurrentVolunteer();
     final volUrl =
         'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/volunteers/${curVol.id}.json';

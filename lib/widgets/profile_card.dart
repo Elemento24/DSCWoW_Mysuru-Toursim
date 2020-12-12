@@ -49,7 +49,7 @@ class _ProfileCardState extends State<ProfileCard> {
       );
       _isError = false;
       Provider.of<Auth>(context, listen: false).setHasCreatedProfile();
-      Provider.of<Volunteers>(context, listen: false).getAndSetDetails();
+      Provider.of<Volunteers>(context, listen: false).setDetails();
     } catch (error) {
       const errorMessage = 'Some Error Occured! Please try again later!';
       print(errorMessage);
