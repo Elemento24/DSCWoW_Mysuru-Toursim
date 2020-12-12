@@ -11,7 +11,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   List<Marker> allMarkers = [];
-  List<String> buttonText = ["Hoispital", "Police", "Back"];
+  List<String> buttonText = ["Hospital", "Police", "Back"];
   GoogleMapController _controller;
   final latitude = 12.2958;
   var count = 0;
@@ -74,33 +74,36 @@ class _MapScreenState extends State<MapScreen> {
                   markers: Set.from(allMarkers),
                   onMapCreated: mapCreated,
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        if (count == 0) {
-                          moveToHospital();
-                        } else if (count == 2) {
-                          moveToHome();
-                        } else {
-                          moveToPoliceStation();
-                        }
-                        count = (count + 1) % 3;
-                      });
-                    },
-                    child: Container(
-                      height: 40.0,
-                      width: 100.0,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.amber),
-                      child: Text(
-                        "${buttonText[count]}",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          if (count == 0) {
+                            moveToHospital();
+                          } else if (count == 2) {
+                            moveToHome();
+                          } else {
+                            moveToPoliceStation();
+                          }
+                          count = (count + 1) % 3;
+                        });
+                      },
+                      child: Container(
+                        height: 40.0,
+                        width: 100.0,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.amber),
+                        child: Text(
+                          "${buttonText[count]}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
