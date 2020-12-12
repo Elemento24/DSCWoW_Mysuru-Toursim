@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../models/volunteer.dart';
+import '../models/review.dart';
 
 class Volunteers with ChangeNotifier {
   List<Volunteer> _volunteers = [];
@@ -11,6 +12,10 @@ class Volunteers with ChangeNotifier {
   final String userModelId;
   final String name;
   final bool hasCreatedProfile;
+  String title = '';
+  String description = '';
+  String phone = '';
+  bool isCab = false;
   // final String authToken;
 
   Volunteers(
@@ -81,12 +86,63 @@ class Volunteers with ChangeNotifier {
     }
   }
 
-  Future<void> getDetails() async {
+  Future<void> fetchAndSetVolunteers() async {
+    final url =
+        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/volunteers.json';
+
+    try {
+      final response = await http.get(url);
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
+      if (extractedData == null) return;
+
+      final List<Volunteer> loadedVolunteers = [];
+      final List<Review> reviews = [];
+      Review review;
+      extractedData.forEach((volId, data) {
+        if (data['reviews'] != null && data['reviews'].length > 0) {
+          data['reviews'].forEach(
+            (key, val) {
+              review = Review(
+                id: key,
+                creatorId: val['creatorId'],
+                author: val['author'],
+                message: val['message'],
+                rating: val['rating'],
+              );
+              reviews.add(review);
+            },
+          );
+        }
+        loadedVolunteers.add(
+          Volunteer(
+            id: volId,
+            description: data['description'],
+            isCab: data['isCab'],
+            name: data['name'],
+            title: data['title'],
+            phone: data['phone'],
+            userId: data['userId'],
+            reviews: reviews,
+          ),
+        );
+      });
+      _volunteers = loadedVolunteers;
+      notifyListeners();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> getAndSetDetails() async {
     final curVol = getCurrentVolunteer();
-    print(curVol);
-    // final volUrl =
-    //     'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/volunteers/${curVol.id}.json';
-    // final response = await http.get(volUrl);
-    // print(response);
+    final volUrl =
+        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/volunteers/${curVol.id}.json';
+    final response = await http.get(volUrl);
+    final data = json.decode(response.body);
+    title = data['title'];
+    description = data['description'];
+    phone = data['phone'];
+    isCab = data['isCab'];
   }
 }

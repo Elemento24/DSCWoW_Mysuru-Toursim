@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/app_drawer.dart';
 import './hotels_screen.dart';
 import './places_screen.dart';
+import '../providers/volunteers.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Provider.of<Volunteers>(context, listen: false).fetchAndSetVolunteers();
+  }
+
   Widget _buildButton(
       BuildContext context, String title, IconData icon, String route) {
     return Container(

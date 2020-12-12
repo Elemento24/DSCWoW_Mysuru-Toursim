@@ -15,6 +15,7 @@ class _ProfileCardState extends State<ProfileCard> {
   final _phoneFN = FocusNode();
   var _isLoading = false;
   var _isError = false;
+  var _hasCreatedProfile = false;
   Map<String, Object> _data = {
     'title': '',
     'description': '',
@@ -48,6 +49,7 @@ class _ProfileCardState extends State<ProfileCard> {
       );
       _isError = false;
       Provider.of<Auth>(context, listen: false).setHasCreatedProfile();
+      Provider.of<Volunteers>(context, listen: false).getAndSetDetails();
     } catch (error) {
       const errorMessage = 'Some Error Occured! Please try again later!';
       print(errorMessage);
@@ -64,13 +66,6 @@ class _ProfileCardState extends State<ProfileCard> {
 
   @override
   Widget build(BuildContext context) {
-    final hasCreatedprofile =
-        Provider.of<Auth>(context, listen: false).hasCreatedProfile;
-
-    if (hasCreatedprofile) {
-      Provider.of<Volunteers>(context, listen: false).getDetails();
-    }
-
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 20,
@@ -80,7 +75,7 @@ class _ProfileCardState extends State<ProfileCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Align(
+            const Align(
               child: Icon(
                 Icons.account_circle,
                 size: 80,
@@ -88,7 +83,7 @@ class _ProfileCardState extends State<ProfileCard> {
               ),
               alignment: Alignment.topCenter,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Form(
               key: _formKey,
               child: Column(
@@ -117,6 +112,7 @@ class _ProfileCardState extends State<ProfileCard> {
                   SizedBox(height: 10),
                   TextFormField(
                     keyboardType: TextInputType.text,
+                    initialValue: _data['description'],
                     focusNode: _descFN,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.description),
@@ -139,6 +135,7 @@ class _ProfileCardState extends State<ProfileCard> {
                   SizedBox(height: 10),
                   TextFormField(
                     keyboardType: TextInputType.phone,
+                    initialValue: _data['phone'],
                     focusNode: _phoneFN,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.phone),
@@ -187,8 +184,12 @@ class _ProfileCardState extends State<ProfileCard> {
                       ? CircularProgressIndicator()
                       : FloatingActionButton.extended(
                           onPressed: _submit,
-                          label: Text('Create Profile',
-                              style: TextStyle(color: Colors.black)),
+                          label: Text(
+                            _hasCreatedProfile
+                                ? 'Create Profile'
+                                : 'Edit Profile',
+                            style: TextStyle(color: Colors.black),
+                          ),
                           icon: Icon(Icons.login, color: Colors.black),
                           heroTag: null,
                           elevation: 2,

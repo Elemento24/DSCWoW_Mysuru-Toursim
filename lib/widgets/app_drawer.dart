@@ -34,13 +34,16 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isTourist = Provider.of<Auth>(context).isTourist;
-    // Do Change This
+    final hasCreatedProfile = Provider.of<Auth>(context).hasCreatedProfile;
     final profileSec = isTourist
         ? [SizedBox(height: 0)]
         : [
             SizedBox(height: 10),
-            buildListTile(
-                context, 'My Profile', Icons.person, ProfileScreen.routeName),
+            hasCreatedProfile
+                ? buildListTile(context, 'Edit Profile', Icons.person,
+                    ProfileScreen.routeName)
+                : buildListTile(context, 'My Profile', Icons.person,
+                    ProfileScreen.routeName),
           ];
 
     return Drawer(
