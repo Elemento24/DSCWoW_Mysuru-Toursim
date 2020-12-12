@@ -26,6 +26,10 @@ class Auth with ChangeNotifier {
     return _isTourist;
   }
 
+  bool get hasCreatedProfile {
+    return _hasCreatedProfile;
+  }
+
   String get token {
     if (_expiryDate != null &&
         _expiryDate.isAfter(DateTime.now()) &&
