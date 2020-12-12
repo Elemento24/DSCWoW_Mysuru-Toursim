@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/volunteers.dart';
 import '../providers/auth.dart';
 
 class ProfileCard extends StatefulWidget {
@@ -13,6 +14,7 @@ class _ProfileCardState extends State<ProfileCard> {
   final _descFN = FocusNode();
   final _phoneFN = FocusNode();
   var _isLoading = false;
+  var _isError = false;
   Map<String, Object> _data = {
     'title': '',
     'description': '',
@@ -28,13 +30,46 @@ class _ProfileCardState extends State<ProfileCard> {
   }
 
   Future<void> _submit() async {
-    print('Hi');
+    if (!_formKey.currentState.validate()) {
+      // Invalid!
+      return;
+    }
+    _formKey.currentState.save();
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await Provider.of<Volunteers>(context, listen: false).addVolunteer(
+        title: _data['title'],
+        description: _data['description'],
+        phone: _data['phone'],
+        isCab: _data['isCab'],
+      );
+      _isError = false;
+      Provider.of<Auth>(context, listen: false).setHasCreatedProfile();
+    } catch (error) {
+      const errorMessage = 'Some Error Occured! Please try again later!';
+      print(errorMessage);
+      _isError = true;
+    }
+
+    // Quick Fix
+    if (!_isError) Navigator.of(context).pushReplacementNamed('/');
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    // final profileUser = Provider.of<Auth>(context).name;
-    // final hasCreatedprofile = Provider.of<Auth>(context).hasCreatedProfile;
+    final hasCreatedprofile =
+        Provider.of<Auth>(context, listen: false).hasCreatedProfile;
+
+    if (hasCreatedprofile) {
+      Provider.of<Volunteers>(context, listen: false).getDetails();
+    }
 
     return Container(
       padding: EdgeInsets.symmetric(
@@ -60,6 +95,7 @@ class _ProfileCardState extends State<ProfileCard> {
                 children: [
                   TextFormField(
                     keyboardType: TextInputType.text,
+                    initialValue: _data['title'],
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.title),
                       labelText: 'Title',

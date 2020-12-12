@@ -12,6 +12,7 @@ class Auth with ChangeNotifier {
   String _token;
   DateTime _expiryDate;
   String _userId;
+  String _userModelId;
   Timer _authTimer;
   String _firstName;
   String _lastName;
@@ -43,8 +44,17 @@ class Auth with ChangeNotifier {
     return _userId;
   }
 
+  String get userModelId {
+    return _userModelId;
+  }
+
   String get name {
     return '$_firstName $_lastName';
+  }
+
+  void setHasCreatedProfile() {
+    _hasCreatedProfile = true;
+    notifyListeners();
   }
 
   Future<void> _authenticate({
@@ -88,7 +98,7 @@ class Auth with ChangeNotifier {
 
       // Making an Entry in the User Model in case of Sign Up
       if (isSignup) {
-        await http.post(
+        final userResData = await http.post(
           userUrl,
           body: json.encode({
             'firstName': firstName,
@@ -98,6 +108,7 @@ class Auth with ChangeNotifier {
             'hasCreatedProfile': false,
           }),
         );
+        _userModelId = json.decode(userResData.body)['name'];
         _firstName = firstName;
         _lastName = lastName;
         _isTourist = isTourist;
@@ -109,7 +120,10 @@ class Auth with ChangeNotifier {
             await http.get('$userUrl?orderBy="userId"&equalto=$_userId');
         final userData = json.decode(userRes.body) as Map;
         var userDetails = {};
-        userData.forEach((key, val) => userDetails = val);
+        userData.forEach((key, val) {
+          _userModelId = key;
+          userDetails = val;
+        });
         _firstName = userDetails['firstName'];
         _lastName = userDetails['lastName'];
         _isTourist = userDetails['isTourist'];
@@ -128,6 +142,7 @@ class Auth with ChangeNotifier {
         'lastName': _lastName,
         'isTourist': _isTourist,
         'hasCreatedProfile': _hasCreatedProfile,
+        'userModelId': _userModelId,
       });
       prefs.setString('userData', userData);
     } catch (error) {
@@ -172,6 +187,8 @@ class Auth with ChangeNotifier {
     _firstName = extractedUserData['firstName'];
     _lastName = extractedUserData['lastName'];
     _isTourist = extractedUserData['isTourist'];
+    _userModelId = extractedUserData['userModelId'];
+    _hasCreatedProfile = extractedUserData['hasCreatedProfile'];
     _expiryDate = expiryDate;
 
     notifyListeners();

@@ -8,11 +8,18 @@ import '../models/volunteer.dart';
 class Volunteers with ChangeNotifier {
   List<Volunteer> _volunteers = [];
   final String userId;
+  final String userModelId;
   final String name;
   final bool hasCreatedProfile;
   // final String authToken;
 
-  Volunteers(this.userId, this.name, this.hasCreatedProfile, this._volunteers);
+  Volunteers(
+    this.userId,
+    this.userModelId,
+    this.name,
+    this.hasCreatedProfile,
+    this._volunteers,
+  );
 
   List<Volunteer> get volunteers {
     return [..._volunteers];
@@ -20,6 +27,10 @@ class Volunteers with ChangeNotifier {
 
   Volunteer findById(String id) {
     return _volunteers.firstWhere((el) => el.id == id);
+  }
+
+  Volunteer getCurrentVolunteer() {
+    return _volunteers.firstWhere((el) => el.userId == userId);
   }
 
   Future<void> addVolunteer({
@@ -31,7 +42,7 @@ class Volunteers with ChangeNotifier {
     final url =
         'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/volunteers.json';
     final userUrl =
-        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/users/$userId.json';
+        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/users/$userModelId.json';
     try {
       final response = await http.post(
         url,
@@ -68,5 +79,14 @@ class Volunteers with ChangeNotifier {
       print(error);
       throw (error);
     }
+  }
+
+  Future<void> getDetails() async {
+    final curVol = getCurrentVolunteer();
+    print(curVol);
+    // final volUrl =
+    //     'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/volunteers/${curVol.id}.json';
+    // final response = await http.get(volUrl);
+    // print(response);
   }
 }

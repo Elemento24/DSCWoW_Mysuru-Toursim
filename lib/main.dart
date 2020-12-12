@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
           create: null,
           update: (ctx, auth, prevVolunteers) => Volunteers(
             auth.userId,
+            auth.userModelId,
             auth.name,
             auth.hasCreatedProfile,
             prevVolunteers == null ? [] : prevVolunteers.volunteers,
