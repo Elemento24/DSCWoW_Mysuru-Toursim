@@ -18,6 +18,7 @@ class SignupCard extends StatefulWidget {
 class _SignupCardState extends State<SignupCard> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   var _isLoading = false;
+  var _isError = false;
   final _passwordController = TextEditingController();
   final _lastNameFN = FocusNode();
   final _emailFN = FocusNode();
@@ -77,6 +78,7 @@ class _SignupCardState extends State<SignupCard> {
         _authData['lastName'],
         _authData['isTourist'],
       );
+      _isError = false;
     } on HttpException catch (error) {
       var errorMessage = 'Authentication Failed';
       print(error);
@@ -91,10 +93,15 @@ class _SignupCardState extends State<SignupCard> {
         errorMessage = 'Invalid Password!';
 
       _showErrorDialog(errorMessage);
+      _isError = true;
     } catch (error) {
       const errorMessage = 'Could not Sign you up. Please try again later!';
       _showErrorDialog(errorMessage);
+      _isError = true;
     }
+
+    // Quick Fix
+    if (!_isError) Navigator.of(context).pushReplacementNamed('/');
 
     setState(() {
       _isLoading = false;
