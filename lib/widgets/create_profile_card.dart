@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 import '../providers/volunteers.dart';
 import '../providers/auth.dart';
 
-class ProfileCard extends StatefulWidget {
+class CreateProfileCard extends StatefulWidget {
   @override
-  _ProfileCardState createState() => _ProfileCardState();
+  _CreateProfileCardState createState() => _CreateProfileCardState();
 }
 
-class _ProfileCardState extends State<ProfileCard> {
+class _CreateProfileCardState extends State<CreateProfileCard> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _descFN = FocusNode();
   final _phoneFN = FocusNode();

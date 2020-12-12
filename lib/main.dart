@@ -12,6 +12,7 @@ import './screens/place_screen.dart';
 import './screens/signup_screen.dart';
 import './screens/login_screen.dart';
 import './screens/create_profile_screen.dart';
+import './screens/edit_profile_screen.dart';
 
 import './providers/auth.dart';
 import './providers/places.dart';
@@ -83,6 +84,7 @@ class MyApp extends StatelessWidget {
             LoginScreen.routeName: (ctx) => LoginScreen(),
             MapScreen.routeName: (ctx) => MapScreen(),
             CreateProfileScreen.routeName: (ctx) => CreateProfileScreen(),
+            EditProfileScreen.routeName: (ctx) => EditProfileScreen(),
           },
         ),
       ),

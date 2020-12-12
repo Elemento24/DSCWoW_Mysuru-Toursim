@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/app_drawer.dart';
-import '../widgets/create_profile_card.dart';
+import '../widgets/edit_profile_card.dart';
 
-class CreateProfileScreen extends StatelessWidget {
-  static const routeName = '/create-profile';
+class EditProfileScreen extends StatelessWidget {
+  static const routeName = '/edit-profile';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Profile'),
+        title: Text('Edit Profile'),
       ),
       drawer: AppDrawer(),
-      body: CreateProfileCard(),
+      body: EditProfileCard(),
     );
   }
 }
