@@ -1,11 +1,9 @@
-// import 'dart:convert';
 import 'dart:convert';
-import 'dart:ffi';
+
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:mysuru_toursim/models/review.dart';
-// import 'package:http/http.dart' as http;
 
+import '../models/review.dart';
 import '../models/hotel.dart';
 
 class Hotels with ChangeNotifier {
@@ -73,6 +71,10 @@ class Hotels with ChangeNotifier {
     //       ),
     //     ]),
   ];
+  final String userId;
+  // final String authToken;
+
+  Hotels(this.userId, this._hotels);
 
   List<Hotel> get hotels {
     return [..._hotels];
@@ -82,35 +84,85 @@ class Hotels with ChangeNotifier {
     return _hotels.firstWhere((el) => el.id == id);
   }
 
-  void addReview({String id, String desc, double rating, String author}) {
-    print(id);
-    print(desc);
-    print(author);
-    print(rating);
+  void addReview({
+    String id,
+    String desc,
+    double rating,
+    String author,
+  }) async {
+    final url =
+        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/hotels/$id/reviews.json';
+    try {
+      // Make an Entry on the Firebase
+      final response = await http.post(
+        url,
+        body: json.encode({
+          'author': author,
+          'message': desc,
+          'rating': rating,
+          'creatorId': userId,
+        }),
+      );
+
+      // Create a local object for the new review
+      final newReview = Review(
+        author: author,
+        message: desc,
+        rating: rating,
+        creatorId: userId,
+        id: json.decode(response.body)['name'],
+      );
+
+      final hotel = _hotels.firstWhere((el) => el.id == id);
+      hotel.reviews.add(newReview);
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw error;
+    }
   }
 
   Future<void> fetchAndSetHotels() async {
     final url =
-        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/hotels';
+        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/hotels.json';
 
     try {
       final response = await http.get(url);
-      final extractedData = json.decode(response.body);
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
       if (extractedData == null) return;
-      print(extractedData);
 
       final List<Hotel> loadedHotels = [];
-      extractedData.forEach((placeId, data) {
-        loadedHotels.add(Hotel(
-            id: placeId,
+      final List<Review> reviews = [];
+      Review review;
+      extractedData.forEach((hotelId, data) {
+        if (data['reviews'].length > 0) {
+          data['reviews'].forEach(
+            (key, val) {
+              review = Review(
+                id: key,
+                creatorId: val['creatorId'],
+                author: val['author'],
+                message: val['message'],
+                rating: val['rating'],
+              );
+              reviews.add(review);
+            },
+          );
+        }
+        loadedHotels.add(
+          Hotel(
+            id: hotelId,
             hotelName: data['title'],
             hotelAddress: data['address'],
             hotelContactNumber: data['hotelContactNumber'],
             imgUrl: data['imgUrl'],
-            rating: data['rating']));
+            rating: data['rating'],
+            reviews: reviews,
+          ),
+        );
       });
       _hotels = loadedHotels;
-      print(_hotels);
       notifyListeners();
     } catch (error) {
       print(error);
