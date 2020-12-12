@@ -4,6 +4,7 @@ import 'package:mysuru_toursim/models/review.dart';
 class Volunteer {
   final String id;
   final String userId;
+  final String name;
   final String title;
   final String description;
   final String phone;
@@ -13,6 +14,7 @@ class Volunteer {
   Volunteer({
     @required this.id,
     @required this.userId,
+    @required this.name,
     @required this.title,
     @required this.description,
     @required this.phone,
