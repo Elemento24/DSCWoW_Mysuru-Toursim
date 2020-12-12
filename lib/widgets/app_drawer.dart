@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../screens/places_screen.dart';
 import '../screens/hotels_screen.dart';
 import '../screens/services_screen.dart';
+import '../screens/map_screen.dart';
 import '../providers/auth.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -46,18 +47,20 @@ class AppDrawer extends StatelessWidget {
               width: 75,
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           buildListTile(context, 'Home', Icons.home, '/'),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           buildListTile(
               context, 'Touristic Places', Icons.place, PlacesScreen.routeName),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           buildListTile(
               context, 'Places to Stay', Icons.hotel, HotelsScreen.routeName),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           buildListTile(context, 'Services', Icons.miscellaneous_services,
               ServicesScreen.routeName),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
+          buildListTile(context, 'Map', Icons.map, MapScreen.routeName),
+          SizedBox(height: 10),
           ListTile(
             tileColor: Colors.amber[100],
             leading: Icon(

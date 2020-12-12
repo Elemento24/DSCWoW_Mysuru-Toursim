@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
+import './screens/map_screen.dart';
 import './screens/services_screen.dart';
 import './screens/home_screen.dart';
 import './screens/hotels_screen.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
             ServicesScreen.routeName: (ctx) => ServicesScreen(),
             SignupScreen.routeName: (ctx) => SignupScreen(),
             LoginScreen.routeName: (ctx) => LoginScreen(),
+            MapScreen.routeName: (ctx) => MapScreen(),
           },
         ),
       ),
