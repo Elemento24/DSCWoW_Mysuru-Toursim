@@ -31,11 +31,11 @@ class Volunteers with ChangeNotifier {
   }
 
   List<Volunteer> get cabVolunteers {
-    return _volunteers.where((el) => el.isCab);
+    return _volunteers.where((el) => el.isCab).toList();
   }
 
   List<Volunteer> get tourVolunteers {
-    return _volunteers.where((el) => !el.isCab);
+    return _volunteers.where((el) => !el.isCab).toList();
   }
 
   Map<String, Object> get volDetails {

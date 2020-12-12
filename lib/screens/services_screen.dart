@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mysuru_toursim/providers/volunteers.dart';
+import 'package:mysuru_toursim/widgets/divider_custom.dart';
+import 'package:mysuru_toursim/widgets/volunteer_card.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/app_drawer.dart';
 import '../widgets/cab_services.dart';
@@ -38,12 +42,43 @@ class _ServicesScreenState extends State<ServicesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // final volunteers = Provider.of<Volunteers>(context).volunteers;
+    final cabVolunteers = Provider.of<Volunteers>(context).cabVolunteers;
+    final touristVolunteer = Provider.of<Volunteers>(context).tourVolunteers;
     return Scaffold(
       appBar: AppBar(
         title: Text(_pages[_selectedPageIndex]['title']),
       ),
       drawer: AppDrawer(),
-      body: _pages[_selectedPageIndex]['page'],
+      body: (_selectedPageIndex == 0)
+          ? GridView(
+              children: cabVolunteers
+                  .map(
+                    (volunteer) => VolunteerCard(volunteer.title,
+                        volunteer.phone, volunteer.description),
+                  )
+                  .toList(),
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                childAspectRatio: 2 / 2.5,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+              ),
+            )
+          : GridView(
+              children: touristVolunteer
+                  .map(
+                    (volunteer) => VolunteerCard(volunteer.title,
+                        volunteer.phone, volunteer.description),
+                  )
+                  .toList(),
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                childAspectRatio: 2 / 2.5,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+              ),
+            ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         backgroundColor: Theme.of(context).primaryColor,
