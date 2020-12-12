@@ -17,7 +17,7 @@ class ReviewCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
-        tileColor: Colors.white70,
+        tileColor: Colors.amber[50],
         title: Text(
           '$message',
           style: TextStyle(fontSize: 14),
