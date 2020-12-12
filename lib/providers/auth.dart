@@ -41,7 +41,7 @@ class Auth with ChangeNotifier {
     @required bool isSignup,
     String firstName = '',
     String lastName = '',
-    bool isTourist = false,
+    bool isTourist = true,
   }) async {
     final url =
         'https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=${DotEnv().env["FIREBASE_KEY"]}';
