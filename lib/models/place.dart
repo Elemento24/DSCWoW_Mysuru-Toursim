@@ -17,6 +17,6 @@ class Place {
     @required this.description,
     @required this.imageUrl,
     this.bestTimeToVisit,
-    @required this.placeReview,
+    this.placeReview,
   });
 }
