@@ -28,7 +28,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => Auth()),
-        ChangeNotifierProvider(create: (ctx) => Hotels()),
+        ChangeNotifierProxyProvider<Auth, Hotels>(
+          create: null,
+          update: (ctx, auth, prevHotels) => Hotels(
+            auth.userId,
+            prevHotels == null ? [] : prevHotels.hotels,
+          ),
+        ),
         ChangeNotifierProxyProvider<Auth, Places>(
           create: null,
           update: (ctx, auth, prevPlaces) => Places(
