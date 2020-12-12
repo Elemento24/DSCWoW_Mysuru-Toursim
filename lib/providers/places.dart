@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-// import '../models/hotel.dart';
 import '../models/review.dart';
 import '../models/place.dart';
 
@@ -101,11 +100,6 @@ class Places with ChangeNotifier {
     double rating,
     String author,
   }) async {
-    print(id);
-    print(desc);
-    print(author);
-    print(rating);
-
     final url =
         'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/places/$id/reviews.json';
     try {
