@@ -29,7 +29,13 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (ctx) => Auth()),
         ChangeNotifierProvider(create: (ctx) => Hotels()),
-        ChangeNotifierProvider(create: (ctx) => Places()),
+        ChangeNotifierProxyProvider<Auth, Places>(
+          create: null,
+          update: (ctx, auth, prevPlaces) => Places(
+            auth.userId,
+            prevPlaces == null ? [] : prevPlaces.places,
+          ),
+        ),
       ],
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
