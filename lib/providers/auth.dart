@@ -21,6 +21,10 @@ class Auth with ChangeNotifier {
     return token != null;
   }
 
+  bool get isTourist {
+    return _isTourist;
+  }
+
   String get token {
     if (_expiryDate != null &&
         _expiryDate.isAfter(DateTime.now()) &&

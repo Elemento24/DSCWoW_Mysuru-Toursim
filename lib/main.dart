@@ -11,6 +11,7 @@ import './screens/places_screen.dart';
 import './screens/place_screen.dart';
 import './screens/signup_screen.dart';
 import './screens/login_screen.dart';
+import './screens/profile_screen.dart';
 
 import './providers/places.dart';
 import './providers/hotels.dart';
@@ -70,6 +71,7 @@ class MyApp extends StatelessWidget {
             SignupScreen.routeName: (ctx) => SignupScreen(),
             LoginScreen.routeName: (ctx) => LoginScreen(),
             MapScreen.routeName: (ctx) => MapScreen(),
+            ProfileScreen.routeName: (ctx) => ProfileScreen(),
           },
         ),
       ),

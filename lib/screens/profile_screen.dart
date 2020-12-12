@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mysuru_toursim/widgets/app_drawer.dart';
 import 'dart:ui' as ui;
 
 import 'package:mysuru_toursim/widgets/review_card.dart';
 
-class ProfileVolunteerScreen extends StatefulWidget {
+class ProfileScreen extends StatefulWidget {
+  static const routeName = '/profile';
+
   @override
-  _ProfileVolunteerScreenState createState() => _ProfileVolunteerScreenState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _ProfileVolunteerScreenState extends State<ProfileVolunteerScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   // below are some dummy variables for review card
   final String message =
       'Quando ambulabat agendis admonere te qualis actio. Si ad corpus, quae plerumque Imaginare tecum in balineo quidam aquam';
@@ -17,6 +20,10 @@ class _ProfileVolunteerScreenState extends State<ProfileVolunteerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('My Profile'),
+      ),
+      drawer: AppDrawer(),
       body: SafeArea(
         child: Container(
           color: Colors.white,
@@ -35,7 +42,7 @@ class _ProfileVolunteerScreenState extends State<ProfileVolunteerScreen> {
                 children: [
                   Icon(
                     Icons.person,
-                    size: MediaQuery.of(context).size.width / 3,
+                    size: MediaQuery.of(context).size.width / 4,
                   ),
                   ListTile(
                     title: Text("Anuj Verma", textAlign: TextAlign.center),

@@ -5,6 +5,7 @@ import '../screens/places_screen.dart';
 import '../screens/hotels_screen.dart';
 import '../screens/services_screen.dart';
 import '../screens/map_screen.dart';
+import '../screens/profile_screen.dart';
 import '../providers/auth.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -14,13 +15,13 @@ class AppDrawer extends StatelessWidget {
       tileColor: Colors.amber[100],
       leading: Icon(
         icon,
-        size: 30,
+        size: 20,
         color: Colors.black,
       ),
       title: Text(
         title,
         style: TextStyle(
-          fontSize: 20,
+          fontSize: 15,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -32,12 +33,22 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isTourist = Provider.of<Auth>(context).isTourist;
+    // Do Change This
+    final profileSec = isTourist
+        ? [SizedBox(height: 0)]
+        : [
+            SizedBox(height: 10),
+            buildListTile(
+                context, 'My Profile', Icons.person, ProfileScreen.routeName),
+          ];
+
     return Drawer(
       child: Column(
         children: [
           Container(
-            height: 250,
-            padding: EdgeInsets.symmetric(vertical: 40),
+            height: 200,
+            padding: EdgeInsets.symmetric(vertical: 30),
             width: double.infinity,
             color: Theme.of(context).primaryColor,
             child: Image(
@@ -60,18 +71,19 @@ class AppDrawer extends StatelessWidget {
               ServicesScreen.routeName),
           SizedBox(height: 10),
           buildListTile(context, 'Map', Icons.map, MapScreen.routeName),
+          ...profileSec,
           SizedBox(height: 10),
           ListTile(
             tileColor: Colors.amber[100],
             leading: Icon(
               Icons.exit_to_app,
-              size: 30,
+              size: 20,
               color: Colors.black,
             ),
             title: Text(
               'Logout',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
