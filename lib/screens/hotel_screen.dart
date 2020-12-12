@@ -170,12 +170,12 @@ class HotelScreen extends StatelessWidget {
                 child: ListView.builder(
                   shrinkWrap: true,
                   // physics: NeverScrollableScrollPhysics(),
-                  itemCount: hotel.hotelReviews.length,
+                  itemCount: hotel.reviews.length,
                   itemBuilder: (context, i) {
                     return ReviewCard(
-                        message: hotel.hotelReviews[i].message,
-                        author: hotel.hotelReviews[i].author,
-                        rating: hotel.hotelReviews[i].rating);
+                        message: hotel.reviews[i].message,
+                        author: hotel.reviews[i].author,
+                        rating: hotel.reviews[i].rating);
                   },
                 ),
               ),
