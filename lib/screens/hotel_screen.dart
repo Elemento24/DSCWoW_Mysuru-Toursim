@@ -3,16 +3,39 @@ import 'package:mysuru_toursim/widgets/divider_custom.dart';
 import 'package:mysuru_toursim/widgets/review_card.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../widgets/new_review.dart';
 import '../providers/hotels.dart';
 
 class HotelScreen extends StatelessWidget {
   static const routeName = '/hotel';
-// url launcher not working
-// TOBE FIXED.
+  Hotels _hotelProvider;
+  String _hotelId;
+
+  void _addReview(String desc, double rating, String author) {
+    _hotelProvider.addReview(
+      id: _hotelId,
+      author: author,
+      desc: desc,
+      rating: rating,
+    );
+  }
+
+  void _startAddNewRev(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return NewReview(_addReview);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final id = ModalRoute.of(context).settings.arguments as String;
-    final hotel = Provider.of<Hotels>(context, listen: false).findById(id);
+    _hotelId = ModalRoute.of(context).settings.arguments as String;
+    final hotel =
+        Provider.of<Hotels>(context, listen: false).findById(_hotelId);
+    _hotelProvider = Provider.of<Hotels>(context, listen: false);
     final BoxDecoration roundBtnBoxDecoration = BoxDecoration(
       border: Border.all(
         color: Colors.transparent,
@@ -23,32 +46,47 @@ class HotelScreen extends StatelessWidget {
       borderRadius: BorderRadius.circular(30.0),
     );
     return Scaffold(
+      appBar: AppBar(
+        title: Text(hotel.hotelName),
+        elevation: 0,
+      ),
       body: SafeArea(
         child: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image(
-                image: NetworkImage(hotel.imgUrl),
-                fit: BoxFit.cover,
+              Container(
                 height: 250,
                 width: double.infinity,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "${hotel.hotelName}",
-                    style: TextStyle(fontSize: 24),
-                  ),
+                child: Stack(
+                  children: [
+                    Image(
+                      image: NetworkImage(hotel.imgUrl),
+                      fit: BoxFit.cover,
+                      height: 250,
+                      width: double.infinity,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Theme.of(context).primaryColor,
+                            Colors.transparent,
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              SizedBox(height: 8),
               DividerCustom(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Row(
                       children: [
@@ -147,7 +185,7 @@ class HotelScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.rate_review),
-        onPressed: () {},
+        onPressed: () => _startAddNewRev(context),
       ),
     );
   }
