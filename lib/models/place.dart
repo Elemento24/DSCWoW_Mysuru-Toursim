@@ -8,7 +8,7 @@ class Place {
   final String description;
   final String imageUrl;
   final String bestTimeToVisit;
-  final List<Review> placeReview;
+  final List<Review> reviews;
 
   Place({
     @required this.id,
@@ -17,6 +17,6 @@ class Place {
     @required this.description,
     @required this.imageUrl,
     this.bestTimeToVisit,
-    this.placeReview,
+    this.reviews,
   });
 }
