@@ -82,7 +82,10 @@ class Places with ChangeNotifier {
     //   bestTimeToVisit: 'Afternoon',
     // ),
   ];
+  final String userId;
   // final String authToken;
+
+  Places(this.userId, this._places);
 
   List<Place> get places {
     return [..._places];
@@ -92,11 +95,47 @@ class Places with ChangeNotifier {
     return _places.firstWhere((el) => el.id == id);
   }
 
-  void addReview({String id, String desc, double rating, String author}) {
+  void addReview({
+    String id,
+    String desc,
+    double rating,
+    String author,
+  }) async {
     print(id);
     print(desc);
     print(author);
     print(rating);
+
+    final url =
+        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/places/$id/reviews.json';
+    try {
+      // Make an Entry on the Firebase
+      final response = await http.post(
+        url,
+        body: json.encode({
+          'author': author,
+          'message': desc,
+          'rating': rating,
+          'creatorId': userId,
+        }),
+      );
+
+      // Create a local object for the new review
+      final newReview = Review(
+        author: author,
+        message: desc,
+        rating: rating,
+        creatorId: userId,
+        id: json.decode(response.body)['name'],
+      );
+
+      final place = _places.firstWhere((el) => el.id == id);
+      place.reviews.add(newReview);
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw error;
+    }
   }
 
   Future<void> fetchAndSetPlaces() async {
@@ -104,15 +143,28 @@ class Places with ChangeNotifier {
         'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com//places.json';
     try {
       final response = await http.get(url);
-
-      // final extractedData = json.decode(response.body) as Map<String, dynamic>;
-      final extractedData = json.decode(response.body);
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
 
       if (extractedData == null) return;
-      print(extractedData);
 
       final List<Place> loadedPlaces = [];
+      final List<Review> reviews = [];
+      Review review;
       extractedData.forEach((placeId, data) {
+        if (data['reviews'].length > 0) {
+          data['reviews'].forEach(
+            (key, val) {
+              review = Review(
+                id: key,
+                creatorId: val['creatorId'],
+                author: val['author'],
+                message: val['message'],
+                rating: val['rating'],
+              );
+              reviews.add(review);
+            },
+          );
+        }
         loadedPlaces.add(Place(
           id: placeId,
           address: data['address'],
@@ -120,11 +172,10 @@ class Places with ChangeNotifier {
           imageUrl: data['imageUrl'],
           title: data['title'],
           bestTimeToVisit: data['bestTimeToVisit'],
-          placeReview: [],
+          reviews: reviews,
         ));
       });
       _places = loadedPlaces;
-      print(_places);
       notifyListeners();
     } catch (error) {
       print(error);
