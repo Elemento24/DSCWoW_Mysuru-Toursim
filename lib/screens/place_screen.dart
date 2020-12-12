@@ -38,7 +38,13 @@ class PlaceScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(place.title),
+        title: Text(
+          place.title,
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 22,
+          ),
+        ),
         elevation: 0,
       ),
       body: Container(

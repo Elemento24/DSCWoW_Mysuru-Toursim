@@ -16,14 +16,15 @@ class AppDrawer extends StatelessWidget {
       tileColor: Colors.amber[100],
       leading: Icon(
         icon,
-        size: 20,
+        size: 25,
         color: Colors.black,
       ),
       title: Text(
         title,
         style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          fontWeight: FontWeight.w300,
+          fontStyle: FontStyle.italic,
         ),
       ),
       onTap: () {
@@ -80,14 +81,15 @@ class AppDrawer extends StatelessWidget {
             tileColor: Colors.amber[100],
             leading: Icon(
               Icons.exit_to_app,
-              size: 20,
+              size: 25,
               color: Colors.black,
             ),
             title: Text(
               'Logout',
               style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                fontWeight: FontWeight.w300,
+                fontStyle: FontStyle.italic,
               ),
             ),
             onTap: () {

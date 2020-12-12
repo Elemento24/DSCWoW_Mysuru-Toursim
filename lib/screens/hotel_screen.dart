@@ -46,7 +46,13 @@ class HotelScreen extends StatelessWidget {
     );
     return Scaffold(
       appBar: AppBar(
-        title: Text(hotel.hotelName),
+        title: Text(
+          hotel.hotelName,
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 22,
+          ),
+        ),
         elevation: 0,
       ),
       body: SafeArea(

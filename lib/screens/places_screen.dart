@@ -38,7 +38,13 @@ class _PlacesScreenState extends State<PlacesScreen> {
     final places = Provider.of<Places>(context).places;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Touristic Spots'),
+        title: Text(
+          'Touristic Spots',
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 24,
+          ),
+        ),
       ),
       drawer: AppDrawer(),
       body: _isLoading

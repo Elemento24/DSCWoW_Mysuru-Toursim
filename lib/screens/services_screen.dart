@@ -39,7 +39,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
     final touristVolunteer = Provider.of<Volunteers>(context).tourVolunteers;
     return Scaffold(
       appBar: AppBar(
-        title: Text(_pages[_selectedPageIndex]['title']),
+        title: Text(
+          _pages[_selectedPageIndex]['title'],
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 24,
+          ),
+        ),
       ),
       drawer: AppDrawer(),
       body: (_selectedPageIndex == 0)

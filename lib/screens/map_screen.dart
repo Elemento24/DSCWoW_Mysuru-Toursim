@@ -59,7 +59,13 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Map Screen'),
+        title: Text(
+          'Map',
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 24,
+          ),
+        ),
       ),
       drawer: AppDrawer(),
       body: Center(
@@ -102,7 +108,8 @@ class _MapScreenState extends State<MapScreen> {
                           "${buttonText[count]}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     ),

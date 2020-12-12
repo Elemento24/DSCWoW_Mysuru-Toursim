@@ -38,7 +38,13 @@ class _HotelsScreenState extends State<HotelsScreen> {
     final hotels = Provider.of<Hotels>(context).hotels;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hotels'),
+        title: Text(
+          'Hotels',
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 24,
+          ),
+        ),
       ),
       drawer: AppDrawer(),
       body: _isLoading
