@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:mysuru_toursim/widgets/app_drawer.dart';
 import 'dart:ui' as ui;
 
-import 'package:mysuru_toursim/widgets/review_card.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../widgets/app_drawer.dart';
+import '../widgets/review_card.dart';
+import '../providers/auth.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const routeName = '/profile';
@@ -12,13 +15,15 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // below are some dummy variables for review card
+  // Below are some dummy variables for review card
   final String message =
       'Quando ambulabat agendis admonere te qualis actio. Si ad corpus, quae plerumque Imaginare tecum in balineo quidam aquam';
   final String author = 'Avneesh Kumar';
   final double rating = 4.0;
+
   @override
   Widget build(BuildContext context) {
+    final profileUser = Provider.of<Auth>(context).name;
     return Scaffold(
       appBar: AppBar(
         title: Text('My Profile'),
@@ -51,9 +56,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  ReviewCard(message: message, author: author, rating: rating),
-                  ReviewCard(message: message, author: author, rating: rating),
-                  ReviewCard(message: message, author: author, rating: rating)
+                  // ReviewCard(message: message, author: author, rating: rating),
+                  // ReviewCard(message: message, author: author, rating: rating),
+                  // ReviewCard(message: message, author: author, rating: rating),
                 ],
               ),
             ],
