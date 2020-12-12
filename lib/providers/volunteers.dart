@@ -12,6 +12,7 @@ class Volunteers with ChangeNotifier {
   final String userModelId;
   final String name;
   final bool hasCreatedProfile;
+  String volId = '';
   String title = '';
   String description = '';
   String phone = '';
@@ -43,7 +44,6 @@ class Volunteers with ChangeNotifier {
       'title': title,
       'description': description,
       'phone': phone,
-      'isCab': isCab,
     };
   }
 
@@ -96,6 +96,31 @@ class Volunteers with ChangeNotifier {
         isCab: isCab,
       );
       _volunteers.add(newVolunteer);
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw (error);
+    }
+  }
+
+  Future<void> updateVolunteer({
+    String title,
+    String description,
+    String phone,
+  }) async {
+    final volUrl =
+        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/volunteers/$volId.json';
+    try {
+      await http.patch(
+        volUrl,
+        body: json.encode({
+          'title': title,
+          'description': description,
+          'phone': phone,
+        }),
+      );
+
+      fetchAndSetVolunteers();
       notifyListeners();
     } catch (error) {
       print(error);
@@ -157,6 +182,7 @@ class Volunteers with ChangeNotifier {
         'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/volunteers/${curVol.id}.json';
     final response = await http.get(volUrl);
     final data = json.decode(response.body);
+    volId = curVol.id;
     title = data['title'];
     description = data['description'];
     phone = data['phone'];

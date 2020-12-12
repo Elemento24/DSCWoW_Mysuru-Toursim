@@ -13,15 +13,26 @@ class _EditProfileCardState extends State<EditProfileCard> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _descFN = FocusNode();
   final _phoneFN = FocusNode();
-  var _isLoading = false;
   var _isError = false;
-  var _hasCreatedProfile = false;
+  var _isLoading = false;
   Map<String, Object> _data = {
     'title': '',
     'description': '',
     'phone': '',
-    'isCab': true,
   };
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Provider.of<Volunteers>(context).setDetails();
+    final det = Provider.of<Volunteers>(context).volDetails;
+    _data = det;
+  }
 
   @override
   void dispose() {
@@ -41,14 +52,12 @@ class _EditProfileCardState extends State<EditProfileCard> {
     });
 
     try {
-      await Provider.of<Volunteers>(context, listen: false).addVolunteer(
+      await Provider.of<Volunteers>(context, listen: false).updateVolunteer(
         title: _data['title'],
         description: _data['description'],
         phone: _data['phone'],
-        isCab: _data['isCab'],
       );
       _isError = false;
-      Provider.of<Auth>(context, listen: false).setHasCreatedProfile();
       Provider.of<Volunteers>(context, listen: false).setDetails();
     } catch (error) {
       const errorMessage = 'Some Error Occured! Please try again later!';
@@ -156,38 +165,12 @@ class _EditProfileCardState extends State<EditProfileCard> {
                     },
                   ),
                   SizedBox(height: 20),
-                  SwitchListTile(
-                    title: _data['isCab']
-                        ? Text(
-                            'Cab Service',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontStyle: FontStyle.italic,
-                            ),
-                          )
-                        : Text(
-                            'Tourist Guide',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
-                    value: _data['isCab'],
-                    activeColor: Theme.of(context).primaryColor,
-                    onChanged: (arg) {
-                      setState(() {
-                        _data['isCab'] = arg;
-                      });
-                    },
-                  ),
                   _isLoading
                       ? CircularProgressIndicator()
                       : FloatingActionButton.extended(
                           onPressed: _submit,
                           label: Text(
-                            _hasCreatedProfile
-                                ? 'Create Profile'
-                                : 'Edit Profile',
+                            'Edit Profile',
                             style: TextStyle(color: Colors.black),
                           ),
                           icon: Icon(Icons.login, color: Colors.black),

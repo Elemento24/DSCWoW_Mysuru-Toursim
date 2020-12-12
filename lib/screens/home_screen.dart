@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     Provider.of<Volunteers>(context, listen: false).fetchAndSetVolunteers();
+    Provider.of<Volunteers>(context, listen: false).setDetails();
   }
 
   Widget _buildButton(
