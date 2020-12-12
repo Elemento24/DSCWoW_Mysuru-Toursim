@@ -11,7 +11,7 @@ class Hotel {
   final String hotelGmailLink;
   final String hotelWebsiteLink;
   final String hotelEstimatedRoomPrices;
-  final List<Review> hotelReviews;
+  final List<Review> reviews;
 
   Hotel({
     @required this.id,
@@ -23,6 +23,6 @@ class Hotel {
     this.hotelGmailLink,
     this.hotelWebsiteLink,
     this.hotelEstimatedRoomPrices,
-    this.hotelReviews,
+    this.reviews,
   });
 }
