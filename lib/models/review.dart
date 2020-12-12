@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Review {
-  String userName;
-  String userMessage;
-  double userRating;
+  String author;
+  String message;
+  double rating;
 
   Review(
-      {@required this.userName,
-      @required this.userMessage,
-      @required this.userRating});
+      {@required this.author,
+      @required this.message,
+      @required this.rating});
 }
