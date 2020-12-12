@@ -28,7 +28,7 @@ class Auth with ChangeNotifier {
   }
 
   bool get hasCreatedProfile {
-    return _hasCreatedProfile;
+    return _hasCreatedProfile == null ? false : _hasCreatedProfile;
   }
 
   String get token {

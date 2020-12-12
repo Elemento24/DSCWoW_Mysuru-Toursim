@@ -5,7 +5,7 @@ import '../screens/places_screen.dart';
 import '../screens/hotels_screen.dart';
 import '../screens/services_screen.dart';
 import '../screens/map_screen.dart';
-import '../screens/profile_screen.dart';
+import '../screens/create_profile_screen.dart';
 import '../providers/auth.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -41,9 +41,9 @@ class AppDrawer extends StatelessWidget {
             SizedBox(height: 10),
             hasCreatedProfile
                 ? buildListTile(context, 'Edit Profile', Icons.person,
-                    ProfileScreen.routeName)
-                : buildListTile(context, 'My Profile', Icons.person,
-                    ProfileScreen.routeName),
+                    CreateProfileScreen.routeName)
+                : buildListTile(context, 'Create Profile', Icons.person,
+                    CreateProfileScreen.routeName),
           ];
 
     return Drawer(
