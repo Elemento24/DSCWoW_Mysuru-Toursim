@@ -62,7 +62,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   .toList(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,
-                childAspectRatio: 2 / 2.5,
+                childAspectRatio: 2 / 3,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
               ),
@@ -80,7 +80,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   .toList(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,
-                childAspectRatio: 2 / 2.5,
+                childAspectRatio: 2 / 3,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
               ),

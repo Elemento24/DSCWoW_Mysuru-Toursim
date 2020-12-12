@@ -102,8 +102,8 @@ class HotelScreen extends StatelessWidget {
                         Text(
                           "${hotel.hotelAddress}",
                           style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
+                            fontSize: 16,
+                            color: Colors.black,
                           ),
                           softWrap: true,
                         ),
@@ -163,8 +163,13 @@ class HotelScreen extends StatelessWidget {
                     Row(
                       children: [
                         Icon(Icons.monetization_on_rounded),
-                        Text("${hotel.hotelEstimatedRoomPrices}",
-                            style: TextStyle(fontStyle: FontStyle.italic)),
+                        Text(
+                          "${hotel.hotelEstimatedRoomPrices}",
+                          style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ],
                     ),
                   ],

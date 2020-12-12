@@ -27,7 +27,9 @@ class VolunteerCard extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     title,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -42,13 +44,13 @@ class VolunteerCard extends StatelessWidget {
                         ),
                         Text(
                           phoneNumber,
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 14),
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsets.only(left: 8, right: 8, top: 8),
+                      padding: EdgeInsets.only(left: 8, right: 8, top: 10),
                       child: DividerCustom()),
                   Padding(
                     padding: EdgeInsets.all(10),

@@ -104,7 +104,7 @@ class PlaceScreen extends StatelessWidget {
                                 "${place.address}",
                                 style: TextStyle(
                                   fontStyle: FontStyle.italic,
-                                  fontSize: 14,
+                                  fontSize: 16,
                                 ),
                               ),
                             ],
@@ -121,7 +121,6 @@ class PlaceScreen extends StatelessWidget {
                                 "${place.bestTimeToVisit}",
                                 style: TextStyle(
                                   fontSize: 16,
-                                  fontWeight: FontWeight.bold,
                                   fontStyle: FontStyle.italic,
                                 ),
                               )
@@ -137,8 +136,8 @@ class PlaceScreen extends StatelessWidget {
                           child: Text(
                             place.description,
                             style: TextStyle(
-                              fontSize: 16,
-                              fontStyle: FontStyle.italic,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
