@@ -66,10 +66,9 @@ class AppDrawer extends StatelessWidget {
           buildListTile(context, 'Home', Icons.home, '/'),
           SizedBox(height: 10),
           buildListTile(
-              context, 'Touristic Places', Icons.place, PlacesScreen.routeName),
+              context, 'Touristic Spots', Icons.place, PlacesScreen.routeName),
           SizedBox(height: 10),
-          buildListTile(
-              context, 'Places to Stay', Icons.hotel, HotelsScreen.routeName),
+          buildListTile(context, 'Hotels', Icons.hotel, HotelsScreen.routeName),
           SizedBox(height: 10),
           buildListTile(context, 'Services', Icons.miscellaneous_services,
               ServicesScreen.routeName),

@@ -93,6 +93,7 @@ class PlaceScreen extends StatelessWidget {
                                 Icons.location_pin,
                                 color: Colors.red,
                               ),
+                              SizedBox(width: 10),
                               Text(
                                 "${place.address}",
                                 style: TextStyle(
@@ -108,7 +109,8 @@ class PlaceScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.watch_sharp),
+                              Icon(Icons.timelapse),
+                              SizedBox(width: 10),
                               Text(
                                 "${place.bestTimeToVisit}",
                                 style: TextStyle(
