@@ -10,7 +10,12 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mysuru Tourism'),
+        leading: Container(
+          padding: EdgeInsets.only(left: 16),
+          child: Image(
+            image: AssetImage('assets/images/0.png'),
+          ),
+        ),
         actions: [
           FlatButton(
             onPressed: () {
