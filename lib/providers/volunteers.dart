@@ -188,4 +188,42 @@ class Volunteers with ChangeNotifier {
     phone = data['phone'];
     isCab = data['isCab'];
   }
+
+  void addReview({
+    String id,
+    String desc,
+    double rating,
+    String author,
+  }) async {
+    final url =
+        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/volunteers/$id/reviews.json';
+    try {
+      // Make an Entry on the Firebase
+      final response = await http.post(
+        url,
+        body: json.encode({
+          'author': author,
+          'message': desc,
+          'rating': rating,
+          'creatorId': userId,
+        }),
+      );
+
+      // Create a local object for the new review
+      final newReview = Review(
+        author: author,
+        message: desc,
+        rating: rating,
+        creatorId: userId,
+        id: json.decode(response.body)['name'],
+      );
+
+      final volunteer = _volunteers.firstWhere((el) => el.id == id);
+      volunteer.reviews.add(newReview);
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw error;
+    }
+  }
 }

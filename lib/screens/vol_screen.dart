@@ -10,33 +10,35 @@ import '../providers/volunteers.dart';
 
 class VolunteerScreen extends StatelessWidget {
   static const routeName = '/volunteer';
+  Volunteers _volunteerProvider;
   var _volId = '';
 
-  //   void _addReview(String desc, double rating, String author) {
-  //   _hotelProvider.addReview(
-  //     id: _hotelId,
-  //     author: author,
-  //     desc: desc,
-  //     rating: rating,
-  //   );
-  // }
+  void _addReview(String desc, double rating, String author) {
+    _volunteerProvider.addReview(
+      id: _volId,
+      author: author,
+      desc: desc,
+      rating: rating,
+    );
+  }
 
-  //   void _startAddNewRev(BuildContext ctx) {
-  //   showModalBottomSheet(
-  //     context: ctx,
-  //     builder: (_) {
-  //       return NewReview(_addReview);
-  //     },
-  //   );
-  // }
+  void _startAddNewRev(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return NewReview(_addReview);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     _volId = ModalRoute.of(context).settings.arguments as String;
     final vol = Provider.of<Volunteers>(context).findById(_volId);
+    _volunteerProvider = Provider.of<Volunteers>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Volunteer'),
+        title: Text(vol.title),
       ),
       body: Container(
         height: double.infinity,
@@ -55,8 +57,11 @@ class VolunteerScreen extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 vol.title,
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w300,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
             SizedBox(
@@ -64,7 +69,7 @@ class VolunteerScreen extends StatelessWidget {
             ),
             DividerCustom(),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Row(
               children: <Widget>[
@@ -73,9 +78,9 @@ class VolunteerScreen extends StatelessWidget {
                   child: Text(
                     vol.name,
                     style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.italic),
+                      fontSize: 18,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ),
                 Container(
@@ -92,9 +97,10 @@ class VolunteerScreen extends StatelessWidget {
                             child: Text(
                               vol.phone,
                               style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FontStyle.normal),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.normal,
+                              ),
                             ),
                           )
                         ],
@@ -130,7 +136,7 @@ class VolunteerScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.rate_review),
-        onPressed: () {},
+        onPressed: () => _startAddNewRev(context),
       ),
     );
   }
