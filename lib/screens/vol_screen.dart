@@ -18,7 +18,7 @@ class VolunteerScreen extends StatelessWidget {
         title: Text('Volunteer'),
       ),
       body: Center(
-        Text('Volunteer'),
+        child: Text('Volunteer'),
       ),
     );
   }
