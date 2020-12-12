@@ -18,14 +18,19 @@ class ReviewCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
         tileColor: Colors.white70,
-        title: Text('${message}'),
-        subtitle: Text("~ ${author}",
-            style: TextStyle(fontStyle: FontStyle.italic),
-            textAlign: TextAlign.right),
+        title: Text(
+          '$message',
+          style: TextStyle(fontSize: 14),
+        ),
+        subtitle: Text(
+          "~ $author",
+          style: TextStyle(fontStyle: FontStyle.italic),
+          textAlign: TextAlign.right,
+        ),
         trailing: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(50)),
           child: Container(
-            child: Text('${rating}'),
+            child: Text('$rating'),
             color: Colors.amber,
             height: 40,
             width: 40,
