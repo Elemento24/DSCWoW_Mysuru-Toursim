@@ -34,6 +34,10 @@ class Auth with ChangeNotifier {
     return _userId;
   }
 
+  String get name {
+    return '$_firstName $_lastName';
+  }
+
   Future<void> _authenticate({
     @required String email,
     @required String password,
@@ -81,7 +85,7 @@ class Auth with ChangeNotifier {
             'firstName': firstName,
             'lastName': lastName,
             'isTourist': isTourist,
-            'userId': resData['idToken'],
+            'userId': resData['localId'],
           }),
         );
         _firstName = firstName;
@@ -91,11 +95,13 @@ class Auth with ChangeNotifier {
       // Fetching the Data from the User Model
       else {
         final userRes =
-            await http.post('$userUrl?orderBy="userId"&equalto=$_userId');
-        final userData = json.decode(userRes.body);
-        _firstName = userData['firstName'];
-        _lastName = userData['lastName'];
-        _isTourist = userData['isTourist'];
+            await http.get('$userUrl?orderBy="userId"&equalto=$_userId');
+        final userData = json.decode(userRes.body) as Map;
+        var userDetails = {};
+        userData.forEach((key, val) => userDetails = val);
+        _firstName = userDetails['firstName'];
+        _lastName = userDetails['lastName'];
+        _isTourist = userDetails['isTourist'];
       }
 
       _autoLogout();
@@ -155,7 +161,6 @@ class Auth with ChangeNotifier {
     _isTourist = extractedUserData['isTourist'];
     _expiryDate = expiryDate;
 
-    print(_token);
     notifyListeners();
     _autoLogout();
     return true;
