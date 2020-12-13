@@ -134,7 +134,7 @@ class Places with ChangeNotifier {
 
   Future<void> fetchAndSetPlaces() async {
     final url =
-        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com//places.json';
+        'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/places.json';
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -145,7 +145,7 @@ class Places with ChangeNotifier {
       List<Review> reviews = [];
       Review review;
       extractedData.forEach((placeId, data) {
-        if (data['reviews'].length > 0) {
+        if (data['reviews'] != null && data['reviews'].length > 0) {
           reviews = [];
           data['reviews'].forEach(
             (key, val) {

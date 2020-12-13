@@ -182,12 +182,14 @@ class Volunteers with ChangeNotifier {
     final volUrl =
         'https://mysuru-tourism-7d522-default-rtdb.firebaseio.com/volunteers/${curVol.id}.json';
     final response = await http.get(volUrl);
-    final data = json.decode(response.body);
-    volId = curVol.id;
-    title = data['title'];
-    description = data['description'];
-    phone = data['phone'];
-    isCab = data['isCab'];
+    if (response != null) {
+      final data = json.decode(response.body);
+      volId = curVol.id;
+      title = data['title'];
+      description = data['description'];
+      phone = data['phone'];
+      isCab = data['isCab'];
+    }
   }
 
   void addReview({
