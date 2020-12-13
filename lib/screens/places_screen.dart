@@ -50,19 +50,22 @@ class _PlacesScreenState extends State<PlacesScreen> {
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
-              child: Column(
-                children: places
-                    .map(
-                      (el) => InkWell(
-                        onTap: () {
-                          Navigator.of(context).pushNamed(PlaceScreen.routeName,
-                              arguments: el.id);
-                        },
-                        child: PlaceCard(el.title, el.imageUrl),
-                      ),
-                    )
-                    .toList(),
-              ),
+              child: places.length <= 0
+                  ? Center(child: Text('No Places Yet'))
+                  : Column(
+                      children: places
+                          .map(
+                            (el) => InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                    PlaceScreen.routeName,
+                                    arguments: el.id);
+                              },
+                              child: PlaceCard(el.title, el.imageUrl),
+                            ),
+                          )
+                          .toList(),
+                    ),
             ),
     );
   }

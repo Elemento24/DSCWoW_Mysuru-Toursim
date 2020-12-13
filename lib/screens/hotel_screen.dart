@@ -176,20 +176,22 @@ class HotelScreen extends StatelessWidget {
                 ),
               ),
               DividerCustom(),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  // physics: NeverScrollableScrollPhysics(),
-                  itemCount: hotel.reviews.length,
-                  itemBuilder: (context, i) {
-                    return ReviewCard(
-                      message: hotel.reviews[i].message,
-                      author: hotel.reviews[i].author,
-                      rating: hotel.reviews[i].rating,
-                    );
-                  },
-                ),
-              ),
+              hotel.reviews.length <= 0
+                  ? SizedBox(height: 0)
+                  : Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        // physics: NeverScrollableScrollPhysics(),
+                        itemCount: hotel.reviews.length,
+                        itemBuilder: (context, i) {
+                          return ReviewCard(
+                            message: hotel.reviews[i].message,
+                            author: hotel.reviews[i].author,
+                            rating: hotel.reviews[i].rating,
+                          );
+                        },
+                      ),
+                    ),
             ],
           ),
         ),

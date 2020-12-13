@@ -5,6 +5,8 @@ import '../widgets/app_drawer.dart';
 import './hotels_screen.dart';
 import './places_screen.dart';
 import '../providers/volunteers.dart';
+import '../providers/hotels.dart';
+import '../providers/places.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -15,8 +17,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Provider.of<Volunteers>(context, listen: false).fetchAndSetVolunteers();
-    Provider.of<Volunteers>(context, listen: false).setDetails();
+    Provider.of<Hotels>(context, listen: false).fetchAndSetHotels();
+    Provider.of<Places>(context, listen: false).fetchAndSetPlaces();
+    Provider.of<Volunteers>(context, listen: false)
+        .fetchAndSetVolunteers()
+        .then((value) {
+      Provider.of<Volunteers>(context, listen: false).setDetails();
+    });
   }
 
   Widget _buildButton(

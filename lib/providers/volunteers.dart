@@ -139,10 +139,11 @@ class Volunteers with ChangeNotifier {
       if (extractedData == null) return;
 
       final List<Volunteer> loadedVolunteers = [];
-      final List<Review> reviews = [];
+      List<Review> reviews = [];
       Review review;
       extractedData.forEach((volId, data) {
         if (data['reviews'] != null && data['reviews'].length > 0) {
+          reviews = [];
           data['reviews'].forEach(
             (key, val) {
               review = Review(

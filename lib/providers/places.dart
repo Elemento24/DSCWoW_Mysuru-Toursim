@@ -142,10 +142,11 @@ class Places with ChangeNotifier {
       if (extractedData == null) return;
 
       final List<Place> loadedPlaces = [];
-      final List<Review> reviews = [];
+      List<Review> reviews = [];
       Review review;
       extractedData.forEach((placeId, data) {
         if (data['reviews'].length > 0) {
+          reviews = [];
           data['reviews'].forEach(
             (key, val) {
               review = Review(

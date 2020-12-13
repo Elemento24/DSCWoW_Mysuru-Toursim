@@ -133,10 +133,11 @@ class Hotels with ChangeNotifier {
       if (extractedData == null) return;
 
       final List<Hotel> loadedHotels = [];
-      final List<Review> reviews = [];
+      List<Review> reviews = [];
       Review review;
       extractedData.forEach((hotelId, data) {
         if (data['reviews'] != null && data['reviews'].length > 0) {
+          reviews = [];
           data['reviews'].forEach(
             (key, val) {
               review = Review(
