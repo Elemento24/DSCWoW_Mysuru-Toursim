@@ -15,7 +15,6 @@ class _CreateProfileCardState extends State<CreateProfileCard> {
   final _phoneFN = FocusNode();
   var _isLoading = false;
   var _isError = false;
-  var _hasCreatedProfile = false;
   Map<String, Object> _data = {
     'title': '',
     'description': '',

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/volunteers.dart';
-import '../providers/auth.dart';
+// import '../providers/auth.dart';
 
 class EditProfileCard extends StatefulWidget {
   @override

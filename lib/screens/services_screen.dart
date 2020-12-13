@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mysuru_toursim/providers/volunteers.dart';
-import 'package:mysuru_toursim/widgets/divider_custom.dart';
-import 'package:mysuru_toursim/widgets/volunteer_card.dart';
 import 'package:provider/provider.dart';
 
+// import '../widgets/divider_custom.dart';
+import '../widgets/volunteer_card.dart';
+import '../providers/volunteers.dart';
 import '../widgets/app_drawer.dart';
 
 class ServicesScreen extends StatefulWidget {

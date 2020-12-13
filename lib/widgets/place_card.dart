@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/place.dart';
+// import '../models/place.dart';
 
 class PlaceCard extends StatelessWidget {
   final String title;
